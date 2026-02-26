@@ -1,0 +1,21 @@
+Mobile par Contact form Send karne ke liye
+==========================================
+
+Option 1 – Same WiFi (development)
+----------------------------------
+1. Computer par backend chalao:  cd portfolio-backend  →  python app.py
+2. Computer par frontend chalao:  npm run dev
+3. Terminal me "Network" URL dekho, jaise:  http://192.168.1.x:5173
+4. Mobile ko same WiFi par connect karo, browser me yehi URL kholo (localhost mat use karo)
+5. Form bhar ke Send dabao – request Vite proxy se backend tak jayegi, form submit ho jayega
+
+Option 2 – Live deploy (kisi bhi device / mobile data se)
+---------------------------------------------------------
+1. Backend ko kahi host karo (e.g. Render, Railway, PythonAnywhere) – uski LIVE URL milegi
+2. Root folder me .env file banao (ya .env.example copy karke .env banao)
+3. .env me likho:  VITE_API_URL=https://your-actual-backend-url.com
+4. Phir:  npm run build
+5. Jo build nikle (dist/) use deploy karo (Vercel, Netlify, etc.)
+6. Ab mobile ya koi bhi device se site kholo – form send hoga kyunki API ab LIVE URL use kar rahi hai
+
+Check: Browser me open karke dekh lo – https://your-backend-url.com/api  – agar JSON dikhe to backend live hai.

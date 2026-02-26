@@ -269,7 +269,11 @@ function App() {
       }
     } catch (err) {
       setFormError(true)
-      setFormErrorMsg(err.message || 'Backend not reachable. Start Flask: cd portfolio-backend && python app.py')
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      const msg = isMobile
+        ? 'Network error. Same WiFi par computer ka URL use karein (e.g. http://192.168.x.x:5173), ya backend ko live deploy karke .env me VITE_API_URL set karein.'
+        : (err.message || 'Backend not reachable. Start Flask: cd portfolio-backend && python app.py')
+      setFormErrorMsg(msg)
     } finally {
       setFormSubmitting(false)
     }

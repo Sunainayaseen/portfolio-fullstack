@@ -2105,8 +2105,14 @@ html, body {
   }
 
   .hero {
-    padding: 5rem 1rem 3rem;
-    min-height: auto;
+    padding: 5rem 1rem 4.5rem;
+    min-height: 100vh;
+    justify-content: flex-start;
+    padding-top: 5.5rem;
+  }
+
+  .hero-container {
+    margin-bottom: auto;
   }
 
   .hero-name-line {
@@ -2125,7 +2131,7 @@ html, body {
     flex-direction: column;
     width: 100%;
     max-width: 280px;
-    margin: 0 auto;
+    margin: 0 auto 2.5rem;
   }
 
   .btn {
@@ -2258,6 +2264,10 @@ html, body {
     gap: 1rem;
     text-align: center;
   }
+
+  .scroll-hint {
+    bottom: 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2373,6 +2383,24 @@ html, body {
   .hero-greeting {
     font-size: 0.7rem;
     letter-spacing: 0.2em;
+  }
+
+  .hero {
+    padding-bottom: 5rem;
+  }
+
+  .hero-buttons {
+    margin-bottom: 2rem;
+  }
+
+  .scroll-hint {
+    bottom: 1.25rem;
+    font-size: 0.65rem;
+  }
+
+  .scroll-hint-mouse {
+    width: 18px;
+    height: 28px;
   }
 
   .project-card {
