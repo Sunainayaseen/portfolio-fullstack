@@ -133,7 +133,8 @@ const CERTIFICATIONS = [
   { name: 'QA Basics / Selenium Basics', provider: 'Automation Fundamentals' },
 ]
 
-const API_BASE = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? '' : 'http://127.0.0.1:5000')
+// Dev me hamesha same-origin (Vite proxy) – mobile se bhi form chalega jab same WiFi par Network URL use karo
+const API_BASE = import.meta.env.DEV ? '' : (import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000')
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')

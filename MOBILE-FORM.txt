@@ -3,11 +3,15 @@ Mobile par Contact form Send karne ke liye
 
 Option 1 – Same WiFi (development)
 ----------------------------------
-1. Computer par backend chalao:  cd portfolio-backend  →  python app.py
-2. Computer par frontend chalao:  npm run dev
-3. Terminal me "Network" URL dekho, jaise:  http://192.168.1.x:5173
-4. Mobile ko same WiFi par connect karo, browser me yehi URL kholo (localhost mat use karo)
-5. Form bhar ke Send dabao – request Vite proxy se backend tak jayegi, form submit ho jayega
+1. Computer par backend pehle chalao:  cd portfolio-backend  →  python app.py  (chalta rehna chahiye)
+2. Naya terminal khol ke frontend chalao:  npm run dev  (portfolio ROOT folder se)
+3. Terminal me "Network:" ke niche URL copy karo, jaise:  http://192.168.1.x:5173
+4. Mobile ko SAME WiFi par connect karo, browser me bilkul yehi URL daalo (localhost ya 127.0.0.1 mat use karo)
+5. Form bhar ke Send dabao
+
+Agar ab bhi "failed to fetch" aaye:
+- Confirm karo dono (backend + frontend) chal rahe hain aur mobile par Network wala URL hi open hai
+- .env me VITE_API_URL mat set karo dev ke dauran (empty/comment out rakho)
 
 Option 2 – Live deploy (kisi bhi device / mobile data se)
 ---------------------------------------------------------
