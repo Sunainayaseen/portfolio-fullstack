@@ -1,0 +1,13 @@
+YOUR UI (Sunaina Yaseen portfolio) runs from THIS folder only.
+
+TO SEE YOUR UI:
+1. Open terminal.
+2. cd to this folder (the one that contains src, portfolio-backend, portfolio-frontend):
+   cd C:\Users\MMT\Desktop\portfolio\portfolio
+3. Run: npm run dev
+4. Open the URL Vite shows (e.g. http://localhost:5178) in the browser.
+
+DO NOT run "npm run dev" from inside portfolio-frontend — that shows the default Vite template, not your portfolio.
+
+This folder = your real portfolio (Contact, Skills, About, Projects).
+portfolio-frontend folder = empty template only.
