@@ -133,10 +133,11 @@ const CERTIFICATIONS = [
   { name: 'QA Basics / Selenium Basics', provider: 'Automation Fundamentals' },
 ]
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'
+const API_BASE = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? '' : 'http://127.0.0.1:5000')
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
+  const [navOpen, setNavOpen] = useState(false)
   const [isVisible, setIsVisible] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
   const [showBackToTop, setShowBackToTop] = useState(false)
@@ -278,21 +279,32 @@ function App() {
     <div className={`app ${isLoaded ? 'loaded' : ''} ${darkMode ? 'dark' : 'light'}`}>
       <div className="scroll-progress" id="scroll-progress" />
 
-      <nav className="navbar">
+      <nav className={`navbar ${navOpen ? 'nav-open' : ''}`}>
         <div className="nav-container">
-          <button type="button" className="nav-logo" onClick={() => scrollToSection('home')} aria-label="Sunaina Yaseen - Home">
+          <button type="button" className="nav-logo" onClick={() => { scrollToSection('home'); setNavOpen(false); }} aria-label="Sunaina Yaseen - Home">
             <span className="nav-logo-text">
               <span className="nav-logo-first">SUNAINA</span>
               <span className="nav-logo-sep" aria-hidden="true">·</span>
               <span className="nav-logo-last">YASEEN</span>
             </span>
           </button>
+          <button
+            type="button"
+            className="nav-hamburger"
+            onClick={() => setNavOpen((o) => !o)}
+            aria-label={navOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={navOpen}
+          >
+            <span className="nav-hamburger-bar" />
+            <span className="nav-hamburger-bar" />
+            <span className="nav-hamburger-bar" />
+          </button>
           <ul className="nav-menu">
-            <li><a href="#home" className={activeSection === 'home' ? 'active' : ''} onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}>Home</a></li>
-            <li><a href="#about" className={activeSection === 'about' ? 'active' : ''} onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>About</a></li>
-            <li><a href="#skills" className={activeSection === 'skills' ? 'active' : ''} onClick={(e) => { e.preventDefault(); scrollToSection('skills'); }}>Skills</a></li>
-            <li><a href="#projects" className={activeSection === 'projects' ? 'active' : ''} onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}>Projects</a></li>
-            <li><a href="#contact" className={activeSection === 'contact' ? 'active' : ''} onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a></li>
+            <li><a href="#home" className={activeSection === 'home' ? 'active' : ''} onClick={(e) => { e.preventDefault(); scrollToSection('home'); setNavOpen(false); }}>Home</a></li>
+            <li><a href="#about" className={activeSection === 'about' ? 'active' : ''} onClick={(e) => { e.preventDefault(); scrollToSection('about'); setNavOpen(false); }}>About</a></li>
+            <li><a href="#skills" className={activeSection === 'skills' ? 'active' : ''} onClick={(e) => { e.preventDefault(); scrollToSection('skills'); setNavOpen(false); }}>Skills</a></li>
+            <li><a href="#projects" className={activeSection === 'projects' ? 'active' : ''} onClick={(e) => { e.preventDefault(); scrollToSection('projects'); setNavOpen(false); }}>Projects</a></li>
+            <li><a href="#contact" className={activeSection === 'contact' ? 'active' : ''} onClick={(e) => { e.preventDefault(); scrollToSection('contact'); setNavOpen(false); }}>Contact</a></li>
           </ul>
           <button
             type="button"
