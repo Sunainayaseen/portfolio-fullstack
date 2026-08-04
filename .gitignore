@@ -12,6 +12,21 @@ dist
 dist-ssr
 *.local
 
+# Secrets / environment
+.env
+.env.*
+!.env.example
+portfolio-backend/.env
+portfolio-backend/venv/
+venv/
+
+# Backend data (local fallback storage / logs)
+portfolio-backend/data/contacts.json
+portfolio-backend/*.log
+portfolio-backend/logs/
+portfolio-frontend/backend/data/contacts.json
+portfolio-frontend/backend/.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
