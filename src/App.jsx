@@ -91,7 +91,7 @@ const SKILLS_DETAILED = [
   { name: 'Node.js', percent: 85, icon: 'Node' },
   { name: 'Docker', percent: 80, icon: 'Docker' },
   { name: 'MCP', percent: 82, icon: 'MCP' },
-  { name: 'Vector Databases', percent: 86, icon: 'VectorDB' },
+  { name: 'Vector DB', percent: 86, icon: 'VectorDB' },
   { name: 'GitHub', percent: 90, icon: 'GitHub' },
   { name: 'RAG Pipelines', percent: 89, icon: 'VectorDB' },
 ]
@@ -213,7 +213,7 @@ const ABOUT_INFO = [
   { label: 'Current Role', value: 'AI Agentic Web Developer · Softerio Solutions' },
   { label: 'Location', value: 'Lahore, Pakistan' },
   { label: 'Availability', value: 'Open to remote work worldwide' },
-  { label: 'Email', value: 'sunainayasee561@gmail.com', href: 'mailto:sunainayasee561@gmail.com' },
+  { label: 'Email', value: 'sunainayaseen561@gmail.com', href: 'mailto:sunainayaseen561@gmail.com' },
 ]
 
 const ABOUT_JOURNEY = "My journey started with Python fundamentals and a love for solving problems with code. That curiosity pulled me toward AI agents and LLM tooling — systems that don't just respond, but reason, plan, and act. I cut my teeth on full-stack, project-based web work at remotebirdy.com, then moved into building autonomous agents full-time at Softerio Solutions, where I now design multi-agent workflows, wire up Claude and OpenAI APIs, and ship the React/Node.js interfaces that put those agents in front of real users."
@@ -1015,12 +1015,12 @@ function App() {
               <h3 className="contact-panel-title">Reach out directly</h3>
               <div className="contact-direct">
                 <div className="contact-cards">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sunainayasee561@gmail.com" target="_blank" rel="noopener noreferrer" className="contact-card reveal-card card-shine" style={{ '--delay': '0s' }}>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sunainayaseen561@gmail.com" target="_blank" rel="noopener noreferrer" className="contact-card reveal-card card-shine" style={{ '--delay': '0s' }}>
                   <span className="contact-icon">
                     <ContactIcons.Email />
                   </span>
                   <h3>Email</h3>
-                  <p>sunainayasee561@gmail.com</p>
+                  <p>sunainayaseen561@gmail.com</p>
                 </a>
                 <a href="https://www.linkedin.com/in/sunaina-yaseen-160695277" target="_blank" rel="noopener noreferrer" className="contact-card reveal-card card-shine" style={{ '--delay': '0.1s' }}>
                   <span className="contact-icon">

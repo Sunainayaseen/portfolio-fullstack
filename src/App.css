@@ -1613,6 +1613,7 @@ html, body {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  gap: 0.5rem;
   margin-bottom: 0.6rem;
 }
 
@@ -1620,12 +1621,17 @@ html, body {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .skill-progress-percent {
   font-size: 0.82rem;
   font-weight: 700;
   color: var(--text-muted);
+  flex-shrink: 0;
 }
 
 .skill-progress-track {
