@@ -15,10 +15,6 @@ export default function Footer() {
             <p className="footer-brand-tagline">
               Building autonomous AI agents, intelligent automation, and production-grade full-stack software.
             </p>
-            <span className="footer-availability">
-              <span className="status-dot" aria-hidden="true" />
-              Available for AI projects
-            </span>
           </div>
 
           <div className="footer-col">

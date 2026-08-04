@@ -68,6 +68,33 @@ export const SkillIcons = {
       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
     </svg>
   ),
+  Cursor: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true">
+      <path fill="currentColor" opacity="0.55" d="M12 2L20 6.5L12 11L4 6.5L12 2Z" />
+      <path fill="currentColor" opacity="0.3" d="M12 11L20 6.5V17.5L12 22V11Z" />
+      <path fill="currentColor" opacity="0.15" d="M12 11L4 6.5V17.5L12 22V11Z" />
+      <path fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" d="M12 2L20 6.5V17.5L12 22L4 17.5V6.5L12 2Z" />
+    </svg>
+  ),
+  LLM: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 3.5a2.7 2.7 0 0 0-2.7 2.7v.6a2.7 2.7 0 0 0-1.8 2.55V11a2.7 2.7 0 0 0 1.8 2.55v1.75a2.7 2.7 0 0 0 2.7 2.7" />
+      <path d="M15 3.5a2.7 2.7 0 0 1 2.7 2.7v.6a2.7 2.7 0 0 1 1.8 2.55V11a2.7 2.7 0 0 1-1.8 2.55v1.75a2.7 2.7 0 0 1-2.7 2.7" />
+      <path d="M9 3.5A2.7 2.7 0 0 1 11.7 6.2v11.6a2.7 2.7 0 0 1-2.7 2.7" />
+      <circle cx="9" cy="8.6" r="0.7" fill="currentColor" stroke="none" />
+      <circle cx="15" cy="11.4" r="0.7" fill="currentColor" stroke="none" />
+    </svg>
+  ),
+  YOLOv8: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 8V5a2 2 0 0 1 2-2h3" />
+      <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
+      <path d="M3 16v3a2 2 0 0 0 2 2h3" />
+      <path d="M21 16v3a2 2 0 0 1-2 2h-3" />
+      <rect x="8.5" y="8.5" width="7" height="7" rx="0.5" opacity="0.5" />
+      <circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  ),
 }
 
 export const SKILLS_STATS = [
@@ -81,6 +108,7 @@ export const SKILLS_DETAILED = [
   { name: 'Python', percent: 96, icon: 'Python' },
   { name: 'Claude API', percent: 95, icon: 'Claude' },
   { name: 'OpenAI API', percent: 90, icon: 'OpenAI' },
+  { name: 'LLM Engineering', percent: 93, icon: 'LLM' },
   { name: 'LangChain', percent: 88, icon: 'LangChain' },
   { name: 'LangGraph', percent: 85, icon: 'LangGraph' },
   { name: 'React', percent: 92, icon: 'React' },
@@ -90,6 +118,8 @@ export const SKILLS_DETAILED = [
   { name: 'Vector DB', percent: 86, icon: 'VectorDB' },
   { name: 'GitHub', percent: 90, icon: 'GitHub' },
   { name: 'RAG Pipelines', percent: 89, icon: 'VectorDB' },
+  { name: 'Cursor', percent: 94, icon: 'Cursor' },
+  { name: 'YOLOv8', percent: 83, icon: 'YOLOv8' },
 ]
 
 export const PROJECTS = [
@@ -156,7 +186,17 @@ export const PROJECTS = [
   },
 ]
 
-export const TECH_STACK_PREVIEW = ['Claude API', 'LangChain', 'Python', 'Docker', 'React', 'LangGraph']
+export const TECH_STACK_PREVIEW = ['Claude API', 'LangChain', 'Python', 'Cursor', 'Docker', 'React', 'LangGraph']
+
+export const TECH_STACK_ICONS = [
+  { name: 'Claude API', icon: 'Claude' },
+  { name: 'LangChain', icon: 'LangChain' },
+  { name: 'Python', icon: 'Python' },
+  { name: 'Cursor', icon: 'Cursor' },
+  { name: 'Docker', icon: 'Docker' },
+  { name: 'React', icon: 'React' },
+  { name: 'LangGraph', icon: 'LangGraph' },
+]
 
 export const CertIcon = () => (
   <svg viewBox="0 0 24 24" className="cert-icon-svg" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -283,4 +323,4 @@ export const NAV_LINKS = [
 
 export const FOOTER_SPECIALIZATIONS = ['AI Agents', 'RAG Systems', 'Vector Databases', 'LLM Integration', 'LangChain', 'LangGraph', 'Full-Stack Dev', 'Automation']
 
-export const FOOTER_STACK = ['Python', 'React', 'Node.js', 'FastAPI', 'Flask', 'Docker', 'OpenAI', 'Claude', 'LangChain', 'LangGraph']
+export const FOOTER_STACK = ['Python', 'React', 'Node.js', 'FastAPI', 'Flask', 'Docker', 'OpenAI', 'Claude', 'Cursor', 'LangChain', 'LangGraph']

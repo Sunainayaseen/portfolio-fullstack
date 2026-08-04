@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
-  ABOUT_STATS, PROCESS_STEPS, PROJECTS, TECH_STACK_PREVIEW, TESTIMONIALS,
+  ABOUT_STATS, PROCESS_STEPS, PROJECTS, TECH_STACK_ICONS, TESTIMONIALS, SkillIcons,
 } from '../data'
+import ContactSection from '../components/ContactSection'
 
 const HERO_TAGLINES = [
   'AI Agentic Web Developer',
@@ -65,19 +66,48 @@ export default function HomePage() {
                 Get In Touch
               </button>
             </div>
-            <p className="hero-reveal hero-status">
-              <span className="status-dot" aria-hidden="true" />
-              Currently building at Softerio Solutions · Lahore, Pakistan
-            </p>
             <a href="/Sunaina_Yaseen_Resume_Energetic.pdf" download className="hero-reveal hero-resume-link" target="_blank" rel="noopener noreferrer">
               Download Resume ↓
             </a>
           </div>
 
-          <div className="hero-photo-wrap hero-reveal">
-            <div className="hero-photo-card">
-              <img src="/profile-photo.jpg" alt="Sunaina Yaseen" loading="eager" />
-            </div>
+          <div className="hero-graphic-wrap hero-reveal" aria-hidden="true">
+            <svg className="hero-graphic" viewBox="0 0 320 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="heroCoreGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="var(--primary-light)" stopOpacity="0.5" />
+                  <stop offset="100%" stopColor="var(--primary-light)" stopOpacity="0" />
+                </radialGradient>
+                <linearGradient id="heroLineGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="var(--primary)" />
+                  <stop offset="100%" stopColor="var(--accent)" />
+                </linearGradient>
+              </defs>
+
+              <circle cx="160" cy="180" r="110" fill="url(#heroCoreGlow)" />
+
+              <g className="hero-graphic-lines" stroke="url(#heroLineGrad)" strokeWidth="1.4" opacity="0.55">
+                <line x1="160" y1="180" x2="70" y2="80" />
+                <line x1="160" y1="180" x2="250" y2="70" />
+                <line x1="160" y1="180" x2="272" y2="200" />
+                <line x1="160" y1="180" x2="218" y2="300" />
+                <line x1="160" y1="180" x2="92" y2="292" />
+                <line x1="160" y1="180" x2="48" y2="190" />
+              </g>
+
+              {[[70, 80], [250, 70], [272, 200], [218, 300], [92, 292], [48, 190]].map(([x, y], i) => (
+                <g key={`${x}-${y}`} className="hero-graphic-node" style={{ '--node-delay': `${i * 0.35}s` }} transform={`translate(${x} ${y})`}>
+                  <circle r="17" fill="var(--bg-card-solid)" stroke="var(--border)" strokeWidth="1.5" />
+                  <circle r="17" className="hero-graphic-node-ring" fill="none" stroke="url(#heroLineGrad)" strokeWidth="1.5" />
+                </g>
+              ))}
+
+              <circle className="hero-graphic-core" cx="160" cy="180" r="32" fill="var(--bg-card-solid)" stroke="url(#heroLineGrad)" strokeWidth="2" />
+              <path
+                d="M160 152 L165 175 L188 180 L165 185 L160 208 L155 185 L132 180 L155 175 Z"
+                fill="url(#heroLineGrad)"
+              />
+            </svg>
           </div>
         </div>
 
@@ -102,14 +132,25 @@ export default function HomePage() {
           <span className="techstack-eyebrow" aria-hidden="true">&lt;/&gt;</span>
           <h2 className="section-title">Tech Stack</h2>
           <p className="section-subtitle">A snapshot of the tools I reach for most.</p>
-          <div className="techstack-pillbar">
-            <div className="techstack-pills">
-              {TECH_STACK_PREVIEW.map((tool) => (
-                <span key={tool} className="techstack-pill">{tool}</span>
-              ))}
-            </div>
-            <Link to="/skills" className="techstack-see-all">See Full Skill Set →</Link>
+          <div className="techstack-icon-grid">
+            {TECH_STACK_ICONS.map((tool, i) => {
+              const Icon = SkillIcons[tool.icon]
+              return (
+                <motion.div
+                  key={tool.name}
+                  className="techstack-icon-card card-shine"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.4, delay: i * 0.06 }}
+                >
+                  <span className="techstack-icon-badge">{Icon ? <Icon /> : null}</span>
+                  <span className="techstack-icon-name">{tool.name}</span>
+                </motion.div>
+              )
+            })}
           </div>
+          <Link to="/skills" className="techstack-see-all">See Full Skill Set →</Link>
         </div>
       </motion.section>
 
@@ -203,6 +244,8 @@ export default function HomePage() {
           </div>
         </div>
       </motion.section>
+
+      <ContactSection />
     </>
   )
 }
