@@ -245,14 +245,14 @@ export const CERTIFICATIONS = [
 ]
 
 export const ABOUT_STATS = [
-  { value: '15+', label: 'Projects Delivered', icon: '🚀' },
-  { value: '3+', label: 'Years in AI/Agentic Dev', icon: '🧠' },
-  { value: '10+', label: 'Frameworks Mastered', icon: '⚙️' },
-  { value: '5+', label: 'Countries Reached', icon: '🌍' },
+  { value: '10+', label: 'Projects Built', icon: '🚀' },
+  { value: '15+', label: 'Technologies Used', icon: '⚙️' },
+  { value: '100%', label: 'Responsive Designs', icon: '📱' },
+  { value: 'AI', label: 'Powered Solutions', icon: '🧠' },
 ]
 
 export const ABOUT_INFO = [
-  { label: 'Current Role', value: 'AI Agentic Web Developer · Softerio Solutions' },
+  { label: 'Current Role', value: 'Software Engineer · Softerio Solutions' },
   { label: 'Location', value: 'Lahore, Pakistan' },
   { label: 'Availability', value: 'Open to remote work worldwide' },
   { label: 'Email', value: 'sunainayaseen561@gmail.com', href: 'mailto:sunainayaseen561@gmail.com' },
@@ -305,11 +305,11 @@ export const TESTIMONIALS = [
 ]
 
 export const HERO_TAGLINES = [
-  'AI Agentic Web Developer',
-  'Building Autonomous AI Agents',
-  'LLMs · RAG · Full-Stack Web Apps',
-  'From Prompt to Production',
-  'Agents That Plan, Reason & Act',
+  'Software Engineer | AI Engineer',
+  'Full Stack Software Engineer',
+  'Building AI-Powered Web Applications',
+  'React · Python · Flask · AI Applications',
+  'From Idea to Production',
   'React · Node.js · Python · LangChain',
 ]
 

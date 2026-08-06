@@ -7,11 +7,11 @@ import {
 import ContactSection from '../components/ContactSection'
 
 const HERO_TAGLINES = [
-  'AI Agentic Web Developer',
-  'Building Autonomous AI Agents',
-  'LLMs · RAG · Full-Stack Web Apps',
-  'From Prompt to Production',
-  'Agents That Plan, Reason & Act',
+  'Software Engineer | AI Engineer',
+  'Full Stack Software Engineer',
+  'Building AI-Powered Web Applications',
+  'React · Python · Flask · AI Applications',
+  'From Idea to Production',
   'React · Node.js · Python · LangChain',
 ]
 
@@ -25,7 +25,7 @@ export default function HomePage() {
   const [heroTaglineIndex, setHeroTaglineIndex] = useState(0)
 
   useEffect(() => {
-    document.title = 'Sunaina Yaseen | AI Agentic Web Developer'
+    document.title = 'Sunaina Yaseen | Software Engineer | AI Engineer'
   }, [])
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function HomePage() {
               </h2>
             </div>
             <p className="hero-reveal hero-tagline">
-              AI Agentic Developer crafting autonomous systems, LLM-powered tools, and smart web experiences that go beyond chatbots.
+              I build scalable full-stack web applications and AI-powered solutions using React, Python, Flask, and modern LLM technologies. Passionate about solving real-world problems through clean architecture, automation, and intuitive user experiences.
             </p>
             <div className="hero-reveal hero-buttons">
               <button type="button" className="btn btn-primary" onClick={() => navigate('/projects')}>
@@ -67,7 +67,7 @@ export default function HomePage() {
               </button>
             </div>
             <a href="/Sunaina_Yaseen_Resume_Energetic.pdf" download className="hero-reveal hero-resume-link" target="_blank" rel="noopener noreferrer">
-              Download Resume ↓
+              Download CV ↓
             </a>
           </div>
 

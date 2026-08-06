@@ -25,7 +25,7 @@ export default function AboutPage() {
           <header className="about-header">
             <h2 className="section-title about-title">I Don&apos;t Just Build Apps — I Build Agents That Work For You</h2>
             <p className="about-intro">
-              I'm Sunaina Yaseen, an AI Agentic Web Developer specializing in autonomous systems, LLM integrations, and intelligent automation. I design tools that don't just respond — they reason, plan, and act.
+              I'm Sunaina Yaseen, a Software Engineer passionate about building scalable web applications and AI-powered products. I specialize in React.js, Python, Flask, JavaScript, and modern AI technologies — designing tools that don't just respond, but reason, plan, and act.
             </p>
             <div className="about-header-decoration">
               <span className="about-header-line" aria-hidden="true" />
@@ -40,7 +40,7 @@ export default function AboutPage() {
                 </span>
               </button>
               <a href="/Sunaina_Yaseen_Resume_Energetic.pdf" download className="btn btn-outline" target="_blank" rel="noopener noreferrer">
-                Download Resume
+                Download CV
               </a>
             </div>
           </header>
@@ -138,7 +138,7 @@ export default function AboutPage() {
           <h2 className="section-title">Professional Experience</h2>
           <p className="section-subtitle">My AI development journey</p>
           <div className="experience-card card-shine">
-            <h3 className="exp-role">AI Agentic Web Developer · Softerio Solutions · Lahore, Pakistan · Present</h3>
+            <h3 className="exp-role">Software Engineer · Softerio Solutions · Lahore, Pakistan · Present</h3>
             <p className="exp-meta">AI Agents &amp; Full-Stack Development</p>
             <ul className="exp-list">
               <li>Designing and building autonomous AI agents with tool/function calling</li>
