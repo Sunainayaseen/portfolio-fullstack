@@ -2106,6 +2106,56 @@ html, body {
   align-self: flex-start;
 }
 
+.project-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 0.25rem 0 1.15rem 0;
+}
+
+.project-breakdown-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.project-breakdown-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-light);
+}
+
+.project-breakdown-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.project-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.85rem;
+}
+
+.project-action-btn .contact-icon-svg {
+  width: 14px;
+  height: 14px;
+}
+
 .project-case-study {
   font-size: 0.86rem;
   line-height: 1.6;

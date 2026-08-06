@@ -6,7 +6,6 @@ import { ContactIcons, PROJECTS } from '../data'
 export default function ProjectsPage() {
   const [projects, setProjects] = useState(PROJECTS)
   const [projectsLoading, setProjectsLoading] = useState(true)
-  const [expandedProject, setExpandedProject] = useState(null)
 
   useEffect(() => {
     document.title = 'Projects | Sunaina Yaseen'
@@ -55,8 +54,11 @@ export default function ProjectsPage() {
         {projectsLoading && <p className="section-subtitle" style={{ marginTop: '-1rem' }}>Loading projects…</p>}
         <div className="projects-grid">
           {projects.map((project, i) => {
-            const isExpanded = expandedProject === i
             const toolTags = project.tools ? project.tools.split(',').map((t) => t.trim()) : []
+            const githubHref = project.githubLink || project.link || project.linkUrl
+            const demoHref = project.demoLink
+            const problem = project.problem || project.caseStudy?.problem
+            const solution = project.solution || project.caseStudy?.solution
             return (
               <motion.div
                 key={project.title + i}
@@ -73,42 +75,35 @@ export default function ProjectsPage() {
 
                 <div className="project-card-top">
                   {project.icon && <span className="project-icon-badge" aria-hidden="true">{project.icon}</span>}
-                  {(project.link || project.linkUrl) && (
-                    <div className="project-card-links">
-                      <a href={project.link || project.linkUrl} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on GitHub`} className="project-icon-link">
-                        <ContactIcons.GitHub />
-                      </a>
-                      <a href={project.link || project.linkUrl} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} external link`} className="project-icon-link">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-                      </a>
-                    </div>
-                  )}
                 </div>
 
                 {project.category && <span className="project-category">{project.category}</span>}
                 <h3 className="project-title">{project.title}</h3>
-                <p className="project-desc">{project.description}</p>
 
-                {toolTags.length > 0 && (
-                  <div className="project-tags">
-                    {toolTags.map((tool) => (
-                      <span key={tool} className="project-tag-pill">{tool}</span>
-                    ))}
-                  </div>
-                )}
-
-                {project.caseStudy && isExpanded && (
-                  <div className="project-case-study">
-                    <p><strong>Problem</strong><br />{project.caseStudy.problem}</p>
-                    <p><strong>Solution</strong><br />{project.caseStudy.solution}</p>
-                    <p><strong>Impact</strong></p>
-                    <ul>
-                      {project.caseStudy.impact.map((point) => (
-                        <li key={point}>{point}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <div className="project-breakdown">
+                  {problem && (
+                    <div className="project-breakdown-item">
+                      <span className="project-breakdown-label">Problem</span>
+                      <p className="project-breakdown-text">{problem}</p>
+                    </div>
+                  )}
+                  {solution && (
+                    <div className="project-breakdown-item">
+                      <span className="project-breakdown-label">Solution</span>
+                      <p className="project-breakdown-text">{solution}</p>
+                    </div>
+                  )}
+                  {toolTags.length > 0 && (
+                    <div className="project-breakdown-item">
+                      <span className="project-breakdown-label">Tech Stack</span>
+                      <div className="project-tags">
+                        {toolTags.map((tool) => (
+                          <span key={tool} className="project-tag-pill">{tool}</span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
 
                 {(project.year || project.scope || project.type) && (
                   <div className="project-meta-grid">
@@ -118,21 +113,19 @@ export default function ProjectsPage() {
                   </div>
                 )}
 
-                {project.caseStudy ? (
-                  <button
-                    type="button"
-                    className="project-link project-link-btn"
-                    onClick={() => setExpandedProject(isExpanded ? null : i)}
-                  >
-                    {isExpanded ? 'Hide Case Study' : project.linkLabel} {isExpanded ? '↑' : '↗'}
-                  </button>
-                ) : (
-                  (project.link || project.linkUrl) && (
-                    <a href={project.link || project.linkUrl} target="_blank" rel="noopener noreferrer" className="project-link">
-                      {project.linkLabel || 'View project'} ↗
+                <div className="project-card-actions">
+                  {demoHref && (
+                    <a href={demoHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary project-action-btn">
+                      Live Demo
                     </a>
-                  )
-                )}
+                  )}
+                  {githubHref && (
+                    <a href={githubHref} target="_blank" rel="noopener noreferrer" className="btn btn-outline project-action-btn">
+                      <ContactIcons.GitHub />
+                      GitHub
+                    </a>
+                  )}
+                </div>
               </motion.div>
             )
           })}
