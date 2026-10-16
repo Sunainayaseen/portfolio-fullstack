@@ -21,11 +21,11 @@ pdfmetrics.registerFont(TTFont('Cal-I', F + 'calibrii.ttf'))
 pdfmetrics.registerFont(TTFont('Cal-BI', F + 'calibriz.ttf'))
 pdfmetrics.registerFontFamily('Cal', normal='Cal', bold='Cal-B', italic='Cal-I', boldItalic='Cal-BI')
 
-INK = HexColor('#132228')
-TEAL = HexColor('#2F6E55')
-AMBER = HexColor('#EBAE29')
-MUTED = HexColor('#4E6066')
-RULE = HexColor('#C9D6D0')
+INK = HexColor('#0F172A')
+TEAL = HexColor('#047857')
+AMBER = HexColor('#06B6D4')
+MUTED = HexColor('#475569')
+RULE = HexColor('#CBD5E1')
 
 name = ParagraphStyle('name', fontName='Cal-B', fontSize=26, leading=29, textColor=INK)
 title = ParagraphStyle('title', fontName='Cal-B', fontSize=12.5, leading=16, textColor=TEAL, spaceBefore=2)
@@ -42,7 +42,7 @@ W = A4[0] - 2 * 16 * mm
 
 
 def link(url, text):
-    return f'<link href="{url}" color="#2F6E55"><u>{text}</u></link>'
+    return f'<link href="{url}" color="#047857"><u>{text}</u></link>'
 
 
 def section(text):
