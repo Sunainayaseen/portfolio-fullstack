@@ -132,7 +132,7 @@ export default function HomePage() {
                 Get In Touch
               </button>
             </div>
-            <a href="/Sunaina_Yaseen_Resume_Energetic.pdf" download className="hero-reveal hero-resume-link" target="_blank" rel="noopener noreferrer">
+            <a href="/Sunaina_Yaseen_SQA_Engineer_CV.pdf" download className="hero-reveal hero-resume-link" target="_blank" rel="noopener noreferrer">
               Download CV ↓
             </a>
           </div>

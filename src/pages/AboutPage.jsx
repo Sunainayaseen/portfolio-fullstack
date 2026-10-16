@@ -39,7 +39,7 @@ export default function AboutPage() {
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
                 </span>
               </button>
-              <a href="/Sunaina_Yaseen_Resume_Energetic.pdf" download className="btn btn-outline" target="_blank" rel="noopener noreferrer">
+              <a href="/Sunaina_Yaseen_SQA_Engineer_CV.pdf" download className="btn btn-outline" target="_blank" rel="noopener noreferrer">
                 Download CV
               </a>
             </div>
