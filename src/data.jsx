@@ -5,59 +5,60 @@ export const SkillIcons = {
       <path fill="#FFD43B" d="M12.1 22.7c1.6 0 2.9-.2 4-.5 2.2-.6 2.6-1.9 2.6-4.2v-2.4h-5.3v-.8h6.9c2.3 0 4.3-1.4 4.9-4 .7-3-.1-4.9-3-5.6h-1.9v2.9c0 2.6-2.2 4.9-4.9 4.9H9.9c-1.7 0-3 1.4-3 3V18c0 1.6 1.4 3 3 3 1.2.1 2.2.2 2.2.2zM15 19.9c-.5 0-1-.4-1-1s.5-1 1-1 1 .4 1 1-.5 1-1 1z" />
     </svg>
   ),
-  Claude: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="#D97757">
-      <path d="M12 2l2.1 6.2L20 10l-5.9 1.8L12 18l-2.1-6.2L4 10l5.9-1.8L12 2z" />
+  JavaScript: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="3" fill="#F7DF1E" />
+      <text x="18.5" y="19" textAnchor="end" fontSize="9" fontWeight="800" fontFamily="Arial, sans-serif" fill="#1a1a1a">JS</text>
     </svg>
   ),
-  OpenAI: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="currentColor">
-      <path d="M22.28 9.82a5.99 5.99 0 0 0-.51-4.91 6.05 6.05 0 0 0-6.5-2.9A6 6 0 0 0 4.98 4.18a5.99 5.99 0 0 0-4 2.9 6.05 6.05 0 0 0 .74 7.1 5.99 5.99 0 0 0 .51 4.91 6.05 6.05 0 0 0 6.5 2.9A6 6 0 0 0 19.02 19.8a5.99 5.99 0 0 0 4-2.9 6.05 6.05 0 0 0-.74-7.08zM13.73 21.6a4.47 4.47 0 0 1-2.87-1.04l.14-.08 4.77-2.76a.78.78 0 0 0 .39-.68v-6.73l2.02 1.16a.07.07 0 0 1 .04.06v5.58a4.5 4.5 0 0 1-4.49 4.49zM3.7 17.55a4.47 4.47 0 0 1-.53-3.01l.14.08 4.77 2.76c.24.14.53.14.77 0l5.82-3.36v2.32a.08.08 0 0 1-.03.07l-4.83 2.78a4.5 4.5 0 0 1-6.11-1.64zM2.47 7.9a4.47 4.47 0 0 1 2.35-1.97v5.68c0 .28.15.53.39.67l5.82 3.36-2.02 1.17a.08.08 0 0 1-.07 0L3.9 13.98a4.5 4.5 0 0 1-1.43-6.08zm16.55 3.85-5.82-3.37 2.02-1.16a.08.08 0 0 1 .08 0l4.82 2.79a4.49 4.49 0 0 1-.69 8.1v-5.69a.78.78 0 0 0-.4-.67zm2.01-3.02-.15-.09-4.76-2.77a.78.78 0 0 0-.78 0l-5.81 3.36V6.9a.07.07 0 0 1 .03-.07l4.83-2.78a4.5 4.5 0 0 1 6.64 4.68zM9.4 12.85l-2.02-1.16a.08.08 0 0 1-.04-.06V6.05a4.5 4.5 0 0 1 7.38-3.45l-.14.08-4.77 2.76a.78.78 0 0 0-.39.68l-.02 6.73zm1.1-2.37 2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5v-3z" />
+  Selenium: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" fill="#43B02A" />
+      <text x="12" y="16" textAnchor="middle" fontSize="10" fontWeight="800" fontFamily="Arial, sans-serif" fill="#fff">Se</text>
     </svg>
   ),
-  LangChain: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="#1C3C3C" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="8" cy="8" r="3.2" />
-      <circle cx="16" cy="16" r="3.2" />
-      <path d="M10.3 10.3l3.4 3.4" />
+  PyTest: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="2.6" rx="1" fill="#696969" />
+      <rect x="3.5" y="7.5" width="3.6" height="7" rx="0.8" fill="#009FE3" />
+      <rect x="8.1" y="7.5" width="3.6" height="10" rx="0.8" fill="#C7D302" />
+      <rect x="12.3" y="7.5" width="3.6" height="12" rx="0.8" fill="#F07E16" />
+      <rect x="16.9" y="7.5" width="3.6" height="13.5" rx="0.8" fill="#DF2815" />
     </svg>
   ),
-  LangGraph: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="#F97316" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="6" cy="6" r="2.2" />
-      <circle cx="18" cy="6" r="2.2" />
-      <circle cx="12" cy="18" r="2.2" />
-      <path d="M7.7 7.5L11 16M16.3 7.5L13 16M8.2 6h7.6" />
+  Cypress: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
+      <text x="12" y="15.4" textAnchor="middle" fontSize="9" fontWeight="800" fontFamily="Arial, sans-serif" fill="currentColor">cy</text>
     </svg>
   ),
-  React: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="#61DAFB" strokeWidth="1.4">
-      <ellipse cx="12" cy="12" rx="10" ry="4.2" />
-      <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)" />
-      <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)" />
-      <circle cx="12" cy="12" r="1.8" fill="#61DAFB" stroke="none" />
+  Playwright: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true">
+      <path fill="#2EAD33" d="M3 7.5c3-1.6 6.4-2.2 9.5-1.6l-1.4 10.4c-.4 2.8-3.2 4.3-5.6 3C3.2 18.2 2 15.3 2.2 12.6L3 7.5z" />
+      <path fill="#D65348" d="M12.5 5.9c3.1-.6 6.3 0 8.9 1.4l.6 5c.3 2.7-.9 5.6-3.3 6.8-2.4 1.3-5.2-.2-5.6-3L12.5 5.9z" />
+      <circle cx="6.6" cy="11.4" r="1" fill="#fff" />
+      <circle cx="17.4" cy="11.2" r="1" fill="#fff" />
     </svg>
   ),
-  Node: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="#5FA04E">
-      <path d="M12 1.5l9 5.2v10.6l-9 5.2-9-5.2V6.7l9-5.2z" opacity="0.15" />
-      <path d="M12 3.2l7.3 4.2v8.4L12 20l-7.3-4.2V7.4L12 3.2z" fill="none" stroke="#5FA04E" strokeWidth="1.6" />
+  Postman: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true">
+      <circle cx="12" cy="12" r="10.5" fill="#FF6C37" />
+      <path fill="#fff" d="M16.9 6.4l-6.8 6.8 1.4 1.4 6.8-6.8a1 1 0 0 0-1.4-1.4zM9.4 13.9l-2.9.8 1.7 1.7.8-.8.4-1.7zm2.5 1.1l-1.9 1.9 3.4.6-1.5-2.5z" />
     </svg>
   ),
-  Docker: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="#2496ED">
-      <path d="M22.4 9.9c-.5-.35-1.6-.48-2.46-.3-.1-.86-.6-1.6-1.4-2.26l-.5-.35-.32.5c-.4.6-.6 1.44-.53 2.16.05.5.24 1.1.62 1.5-.3.16-.9.4-1.68.4H1.5l-.05.4c-.15 1.34.1 2.7.9 3.86 1 1.4 2.5 2.2 4.4 2.2 4.16 0 7.23-1.92 8.66-5.4.9.02 2.9-.1 3.9-1.94.06-.1.02-.2-.9-.77zM4.2 9.02h1.9V7.14H4.2v1.88zm2.5 0h1.9V7.14h-1.9v1.88zm2.5 0h1.9V7.14h-1.9v1.88zm-5 2.6h1.9V9.74H4.2v1.88zm2.5 0h1.9V9.74h-1.9v1.88zm2.5 0h1.9V9.74h-1.9v1.88zm2.5 0h1.9V9.74h-1.9v1.88zm-2.5-5.2h1.9V4.54h-1.9v1.88zm2.5 0h1.9V4.54h-1.9v1.88z" />
+  JMeter: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true">
+      <path fill="#D22128" d="M19.6 2.6c-5.4.6-10.3 4.6-12.4 10L5.6 17l-2 4.4 1.1.5 1.9-4.2 4.6-1.3c4.6-1.9 8.2-6.7 8.4-13.8z" />
+      <path fill="#fff" opacity="0.65" d="M8.7 15.2l6.6-8.7.5.4-6.6 8.7z" />
     </svg>
   ),
-  MCP: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="4" y="9" width="6" height="6" rx="1" />
-      <rect x="14" y="9" width="6" height="6" rx="1" />
-      <path d="M10 12h4" />
+  Jira: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true">
+      <path fill="#2684FF" d="M21.6 11.3L12.7 2.4 12 1.7 5.3 8.4l-3 3a.9.9 0 0 0 0 1.3l6.1 6.1L12 22.3l6.7-6.7.1-.1 2.8-2.8a.9.9 0 0 0 0-1.4zM12 14.9L9.1 12 12 9.1l2.9 2.9-2.9 2.9z" />
     </svg>
   ),
-  VectorDB: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+  SQL: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="#00758F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <ellipse cx="12" cy="6" rx="8" ry="3" />
       <path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6" />
       <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3" />
@@ -68,150 +69,203 @@ export const SkillIcons = {
       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
     </svg>
   ),
-  Cursor: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true">
-      <path fill="currentColor" opacity="0.55" d="M12 2L20 6.5L12 11L4 6.5L12 2Z" />
-      <path fill="currentColor" opacity="0.3" d="M12 11L20 6.5V17.5L12 22V11Z" />
-      <path fill="currentColor" opacity="0.15" d="M12 11L4 6.5V17.5L12 22V11Z" />
-      <path fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" d="M12 2L20 6.5V17.5L12 22L4 17.5V6.5L12 2Z" />
+  Checklist: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="5" y="3.5" width="14" height="18" rx="2" />
+      <path d="M9 3.5h6v2.5H9z" />
+      <path d="M8.5 11l1.5 1.5 3-3M8.5 16.5l1.5 1.5 3-3M15 11.5h1M15 17h1" />
     </svg>
   ),
-  LLM: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 3.5a2.7 2.7 0 0 0-2.7 2.7v.6a2.7 2.7 0 0 0-1.8 2.55V11a2.7 2.7 0 0 0 1.8 2.55v1.75a2.7 2.7 0 0 0 2.7 2.7" />
-      <path d="M15 3.5a2.7 2.7 0 0 1 2.7 2.7v.6a2.7 2.7 0 0 1 1.8 2.55V11a2.7 2.7 0 0 1-1.8 2.55v1.75a2.7 2.7 0 0 1-2.7 2.7" />
-      <path d="M9 3.5A2.7 2.7 0 0 1 11.7 6.2v11.6a2.7 2.7 0 0 1-2.7 2.7" />
-      <circle cx="9" cy="8.6" r="0.7" fill="currentColor" stroke="none" />
-      <circle cx="15" cy="11.4" r="0.7" fill="currentColor" stroke="none" />
+  Document: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z" />
+      <path d="M14 2.5V8h5.5M8.5 13h7M8.5 17h5" />
     </svg>
   ),
-  YOLOv8: () => (
-    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 8V5a2 2 0 0 1 2-2h3" />
-      <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
-      <path d="M3 16v3a2 2 0 0 0 2 2h3" />
-      <path d="M21 16v3a2 2 0 0 1-2 2h-3" />
-      <rect x="8.5" y="8.5" width="7" height="7" rx="0.5" opacity="0.5" />
-      <circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none" />
+  Bug: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="7" y="7.5" width="10" height="13" rx="5" />
+      <path d="M9.5 7.5V6a2.5 2.5 0 0 1 5 0v1.5M12 11v9.5M3.5 12.5H7M17 12.5h3.5M4.5 7.5L7.5 9.5M19.5 7.5l-3 2M4.5 18.5l3-2M19.5 18.5l-3-2" />
+    </svg>
+  ),
+  Regression: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 11a8 8 0 0 0-14.5-4.6L4 8" />
+      <path d="M4 3.5V8h4.5" />
+      <path d="M4 13a8 8 0 0 0 14.5 4.6L20 16" />
+      <path d="M20 20.5V16h-4.5" />
+    </svg>
+  ),
+  Explore: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="M15.5 15.5l5 5" />
+      <path d="M8 10.5l1.8 1.8 3.2-3.3" />
+    </svg>
+  ),
+  Browser: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2.5" y="4" width="19" height="16" rx="2.5" />
+      <path d="M2.5 8.5h19" />
+      <circle cx="5.5" cy="6.3" r="0.4" fill="currentColor" />
+      <circle cx="7.5" cy="6.3" r="0.4" fill="currentColor" />
+      <path d="M9 14.5l2 2 4-4" />
+    </svg>
+  ),
+  Users: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="9" cy="8" r="3.5" />
+      <path d="M2.5 20a6.5 6.5 0 0 1 13 0" />
+      <path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.3A6.5 6.5 0 0 1 21.5 20" />
+    </svg>
+  ),
+  Layers: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 3l9 5-9 5-9-5 9-5z" />
+      <path d="M3 13l9 5 9-5" />
+    </svg>
+  ),
+  Api: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 6l-6 6 6 6M16 6l6 6-6 6" />
+      <path d="M13.5 4l-3 16" />
+    </svg>
+  ),
+  DevTools: () => (
+    <svg viewBox="0 0 24 24" className="skill-logo-svg" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.7 6.3a4 4 0 0 0-5.4 5.1L3.5 17.2a1.8 1.8 0 0 0 2.6 2.6l5.8-5.8a4 4 0 0 0 5.1-5.4l-2.5 2.5-2.1-.5-.5-2.1 2.8-2.2z" />
     </svg>
   ),
 }
 
 export const SKILLS_STATS = [
-  { icon: 'code', value: '3+', label: 'Languages Mastered' },
-  { icon: 'cube', value: '10+', label: 'AI Frameworks' },
-  { icon: 'db', value: '3+', label: 'Vector/DB Systems' },
-  { icon: 'git', value: '3+', label: 'Years Experience' },
+  { icon: 'code', value: '4', label: 'Automation Frameworks' },
+  { icon: 'cube', value: '6+', label: 'Testing Types' },
+  { icon: 'db', value: 'UI · API', label: '+ Performance Testing' },
+  { icon: 'git', value: 'STLC', label: 'End-to-End Ownership' },
 ]
 
-export const SKILLS_DETAILED = [
-  { name: 'Python', percent: 96, icon: 'Python' },
-  { name: 'Claude API', percent: 95, icon: 'Claude' },
-  { name: 'OpenAI API', percent: 90, icon: 'OpenAI' },
-  { name: 'LLM Engineering', percent: 93, icon: 'LLM' },
-  { name: 'LangChain', percent: 88, icon: 'LangChain' },
-  { name: 'LangGraph', percent: 85, icon: 'LangGraph' },
-  { name: 'React', percent: 92, icon: 'React' },
-  { name: 'Node.js', percent: 85, icon: 'Node' },
-  { name: 'Docker', percent: 80, icon: 'Docker' },
-  { name: 'MCP', percent: 82, icon: 'MCP' },
-  { name: 'Vector DB', percent: 86, icon: 'VectorDB' },
-  { name: 'GitHub', percent: 90, icon: 'GitHub' },
-  { name: 'RAG Pipelines', percent: 89, icon: 'VectorDB' },
-  { name: 'Cursor', percent: 94, icon: 'Cursor' },
-  { name: 'YOLOv8', percent: 83, icon: 'YOLOv8' },
+export const SKILL_GROUPS = [
+  {
+    icon: 'Checklist',
+    title: 'Manual & Functional Testing',
+    desc: 'Turning requirements into clear, traceable test coverage — and finding what scripts miss.',
+    items: [
+      { name: 'Test Case Design', icon: 'Checklist' },
+      { name: 'Test Plans & Strategy', icon: 'Document' },
+      { name: 'Bug Reporting', icon: 'Bug' },
+      { name: 'Regression & Smoke', icon: 'Regression' },
+      { name: 'Exploratory Testing', icon: 'Explore' },
+      { name: 'Cross-Browser Testing', icon: 'Browser' },
+      { name: 'UAT Support', icon: 'Users' },
+    ],
+  },
+  {
+    icon: 'Layers',
+    title: 'Test Automation',
+    desc: 'Stable, maintainable UI suites that run the full regression with one command.',
+    items: [
+      { name: 'Selenium WebDriver', icon: 'Selenium' },
+      { name: 'PyTest', icon: 'PyTest' },
+      { name: 'Cypress', icon: 'Cypress' },
+      { name: 'Playwright', icon: 'Playwright' },
+      { name: 'Page Object Model', icon: 'Layers' },
+      { name: 'Python', icon: 'Python' },
+      { name: 'JavaScript', icon: 'JavaScript' },
+    ],
+  },
+  {
+    icon: 'Api',
+    title: 'API & Performance Testing',
+    desc: 'Validating the layer under the UI, and how it holds up under real load.',
+    items: [
+      { name: 'Postman', icon: 'Postman' },
+      { name: 'REST API Testing', icon: 'Api' },
+      { name: 'JMeter', icon: 'JMeter' },
+      { name: 'Load & Stress Testing', icon: 'Users' },
+      { name: 'SQL / Database Testing', icon: 'SQL' },
+    ],
+  },
+  {
+    icon: 'DevTools',
+    title: 'Tools & Workflow',
+    desc: 'Working inside the dev workflow, so quality is part of every sprint — not a last step.',
+    items: [
+      { name: 'Jira', icon: 'Jira' },
+      { name: 'Git & GitHub', icon: 'GitHub' },
+      { name: 'Chrome DevTools', icon: 'DevTools' },
+      { name: 'Test Documentation', icon: 'Document' },
+    ],
+  },
 ]
 
 export const PROJECTS = [
   {
-    icon: '🔍',
-    category: 'AGENT',
-    title: 'AutoResearch Agent',
-    tag: 'Multi-Agent System',
-    description: 'An autonomous research agent that scrapes, summarizes, and compiles reports — reducing manual research time by 80%.',
-    problem: 'Manual research for market analysis was taking clients 10+ hours per week, with inconsistent quality and missed sources.',
-    solution: 'Built a multi-agent system using LangGraph + Claude API where one agent searches and scrapes sources, another verifies credibility, and a third compiles a structured report — all coordinated autonomously.',
-    tools: 'LangGraph, Claude API, Python, Vector DB, Puppeteer',
+    icon: '🧪',
+    category: 'UI AUTOMATION',
+    title: 'Selenium E2E Automation Framework',
+    description: 'A Selenium + PyTest framework built on the Page Object Model that runs a web app’s full regression suite with one command.',
+    problem: 'Regression testing of core user flows — login, forms and multi-step journeys — was repeated by hand every release, which was slow and let bugs slip through under deadline pressure.',
+    solution: 'Built a Selenium WebDriver + PyTest framework using the Page Object Model, data-driven test cases and explicit waits, with screenshots on failure and HTML reports so any team member can run and read the full regression.',
+    tools: 'Selenium WebDriver, Python, PyTest, Page Object Model, pytest-html',
     githubLink: 'https://github.com/Sunainayaseen',
     demoLink: '',
-    link: 'https://github.com/Sunainayaseen',
-    linkLabel: 'View Case Study',
     year: '2026',
-    scope: 'Research Automation',
-    type: 'Agent',
-    caseStudy: {
-      problem: 'Manual research for market analysis was taking clients 10+ hours per week, with inconsistent quality and missed sources.',
-      solution: 'Built a multi-agent system using LangGraph + Claude API where one agent searches and scrapes sources, another verifies credibility, and a third compiles a structured report — all coordinated autonomously.',
-      impact: [
-        '80% reduction in research time',
-        '3x more sources analyzed per report',
-        'Fully autonomous — zero manual intervention needed',
-      ],
-    },
+    scope: 'Regression Automation',
+    type: 'Framework',
   },
   {
-    icon: '💬',
-    category: 'CHATBOT',
-    title: 'SmartSupport AI',
-    tag: 'RAG-Powered Chatbot',
-    description: 'A customer support agent trained on company docs, resolving 70% of queries without human intervention.',
-    problem: 'Support teams were overwhelmed with repetitive queries, leading to slow response times and rising support costs.',
-    solution: 'Built a RAG-powered chatbot trained on company documentation using OpenAI API, Pinecone, and LangChain that answers customer questions instantly and escalates only complex cases to humans.',
-    tools: 'OpenAI API, Pinecone, LangChain, React',
+    icon: '🔌',
+    category: 'API TESTING',
+    title: 'REST API Test Suite',
+    description: 'Postman collections that validate status codes, response schemas and edge cases across a REST API.',
+    problem: 'Backend endpoints were only checked indirectly through the UI, so broken validation, wrong status codes and inconsistent responses reached the frontend before anyone noticed.',
+    solution: 'Designed Postman collections with environments, chained requests and test scripts that assert status codes, response bodies and JSON schemas — covering negative cases like invalid input, missing fields and boundary values.',
+    tools: 'Postman, JavaScript, REST APIs, JSON Schema',
     githubLink: 'https://github.com/Sunainayaseen',
     demoLink: '',
-    link: 'https://github.com/Sunainayaseen',
-    linkLabel: 'View details',
     year: '2025',
-    scope: 'Customer Support',
-    type: 'Chatbot',
+    scope: 'API Validation',
+    type: 'Test Suite',
   },
   {
-    icon: '🔗',
-    category: 'AUTOMATION',
-    title: 'TaskFlow Orchestrator',
-    tag: 'API + Agent Automation',
-    description: 'An agent that manages tasks across Slack, Notion, and Gmail autonomously based on natural language commands.',
-    problem: 'Manually coordinating tasks across Slack, Notion, and Gmail wasted hours switching between tools and re-entering the same information.',
-    solution: 'Built an MCP-powered agent that interprets natural language commands and orchestrates actions across Slack, Notion, and Gmail through their APIs — automating the entire workflow.',
-    tools: 'MCP, Node.js, OpenAI API, REST APIs',
+    icon: '🎭',
+    category: 'E2E · CROSS-BROWSER',
+    title: 'Cypress & Playwright E2E Suite',
+    description: 'End-to-end specs for a React app — Cypress for fast feedback, Playwright for Chromium, Firefox and WebKit.',
+    problem: 'A React single-page app behaved differently across browsers, and manual spot-checks kept missing UI regressions outside Chrome.',
+    solution: 'Wrote E2E specs in Cypress for fast in-development feedback and in Playwright for cross-browser runs on Chromium, Firefox and WebKit — with network stubbing, reusable fixtures, and traces and videos captured on failure.',
+    tools: 'Cypress, Playwright, JavaScript, React',
     githubLink: 'https://github.com/Sunainayaseen',
     demoLink: '',
-    link: 'https://github.com/Sunainayaseen',
-    linkLabel: 'View details',
     year: '2026',
-    scope: 'Workflow Automation',
-    type: 'Agent',
+    scope: 'Cross-Browser E2E',
+    type: 'Test Suite',
   },
   {
-    icon: '🎯',
-    category: 'COMPUTER VISION',
-    title: 'Real-Time Object Detection',
-    tag: 'Computer Vision',
-    description: 'Trained and deployed a custom YOLOv8 model for real-time object detection, served through a web interface with live bounding-box predictions.',
-    problem: 'Existing off-the-shelf detection models weren\'t accurate enough for the target use case and had no accessible interface for real-time testing.',
-    solution: 'Trained a custom YOLOv8 model on a tailored dataset and deployed it behind a Flask web interface that streams live video with real-time bounding-box predictions.',
-    tools: 'YOLOv8, PyTorch, Python, Flask, OpenCV',
+    icon: '📈',
+    category: 'PERFORMANCE',
+    title: 'Load & Performance Testing with JMeter',
+    description: 'JMeter test plans that measure response time, throughput and error rate under concurrent users.',
+    problem: 'There was no data on how the application behaved with many concurrent users, so performance problems would only have surfaced after launch.',
+    solution: 'Built JMeter test plans with thread groups, ramp-up periods, CSV-driven test data and assertions; analysed response times, throughput and error rates, and cross-checked slow endpoints with SQL queries to pinpoint bottlenecks.',
+    tools: 'Apache JMeter, SQL, REST APIs',
     githubLink: 'https://github.com/Sunainayaseen',
     demoLink: '',
-    link: 'https://github.com/Sunainayaseen',
-    linkLabel: 'View details',
     year: '2025',
-    scope: 'Object Detection',
-    type: 'ML Model',
+    scope: 'Load & Stress',
+    type: 'Performance',
   },
 ]
 
-export const TECH_STACK_PREVIEW = ['Claude API', 'LangChain', 'Python', 'Cursor', 'Docker', 'React', 'LangGraph']
-
 export const TECH_STACK_ICONS = [
-  { name: 'Claude API', icon: 'Claude' },
-  { name: 'LangChain', icon: 'LangChain' },
-  { name: 'Python', icon: 'Python' },
-  { name: 'Cursor', icon: 'Cursor' },
-  { name: 'Docker', icon: 'Docker' },
-  { name: 'React', icon: 'React' },
-  { name: 'LangGraph', icon: 'LangGraph' },
+  { name: 'Selenium', icon: 'Selenium' },
+  { name: 'PyTest', icon: 'PyTest' },
+  { name: 'Cypress', icon: 'Cypress' },
+  { name: 'Playwright', icon: 'Playwright' },
+  { name: 'Postman', icon: 'Postman' },
+  { name: 'JMeter', icon: 'JMeter' },
+  { name: 'Jira', icon: 'Jira' },
 ]
 
 export const CertIcon = () => (
@@ -261,20 +315,28 @@ export const CERTIFICATIONS = [
 ]
 
 export const ABOUT_STATS = [
-  { value: '10+', label: 'Projects Built', icon: '🚀' },
-  { value: '15+', label: 'Technologies Used', icon: '⚙️' },
-  { value: '100%', label: 'Responsive Designs', icon: '📱' },
-  { value: 'AI', label: 'Powered Solutions', icon: '🧠' },
+  { value: '10+', label: 'Projects Tested' },
+  { value: '15+', label: 'Tools & Technologies' },
+  { value: '4', label: 'Automation Frameworks' },
+  { value: 'E2E', label: 'UI · API · Performance' },
 ]
 
 export const ABOUT_INFO = [
-  { label: 'Current Role', value: 'Software Engineer · Softerio Solutions' },
+  { label: 'Current Role', value: 'SQA Engineer · Softerio Solutions' },
   { label: 'Location', value: 'Lahore, Pakistan' },
   { label: 'Availability', value: 'Open to remote work worldwide' },
   { label: 'Email', value: 'sunainayaseen561@gmail.com', href: 'mailto:sunainayaseen561@gmail.com' },
 ]
 
-export const ABOUT_JOURNEY = "My journey started with Python fundamentals and a love for solving problems with code. That curiosity pulled me toward AI agents and LLM tooling — systems that don't just respond, but reason, plan, and act. I cut my teeth on full-stack, project-based web work at remotebirdy.com, then moved into building autonomous agents full-time at Softerio Solutions, where I now design multi-agent workflows, wire up Claude and OpenAI APIs, and ship the React/Node.js interfaces that put those agents in front of real users."
+export const ABOUT_STRENGTHS = [
+  'Test planning & test case design',
+  'UI & API test automation',
+  'Clear, reproducible bug reports',
+  'Performance & load testing',
+  'Sharp attention to detail',
+]
+
+export const ABOUT_JOURNEY = "My journey started with Python and a habit of asking \"what happens if…?\". Building full-stack projects — including project-based web work at remotebirdy.com — showed me how easily bugs slip through when testing is an afterthought, and that pulled me toward quality assurance. Today, as an SQA Engineer at Softerio Solutions, I design test cases from requirements, automate regression with Selenium, Cypress and Playwright, validate APIs with Postman and load-test with JMeter — so every release is one the team can trust."
 
 export const ABOUT_EDUCATION = [
   { degree: 'Bachelor of Computer Science', school: 'University of Education', period: '2022 – 2026' },
@@ -283,50 +345,61 @@ export const ABOUT_EDUCATION = [
 ]
 
 export const ABOUT_GOALS = [
-  'Ship AI agents that survive contact with production — not just demos.',
-  'Grow into a senior role owning agent architecture end to end.',
-  'Keep learning: new LLM providers, agent frameworks, and eval methods as they emerge.',
+  'Build automation suites teams actually trust — stable, fast and easy to maintain.',
+  'Grow into a QA Lead / SDET role, owning test strategy end to end.',
+  'Keep learning: CI-integrated testing, contract testing, and testing AI-powered applications.',
 ]
 
 export const ABOUT_BEYOND = [
-  { icon: '🤖', title: 'AI Agent Architecture', desc: 'Designing multi-step, autonomous agent workflows with tool/function calling.' },
-  { icon: '🧩', title: 'LLM & RAG Systems', desc: 'Integrating Claude, OpenAI, and vector databases into production pipelines.' },
-  { icon: '🔗', title: 'Automation & Integrations', desc: 'Connecting agents to real tools — APIs, MCP servers, and everyday workflows.' },
-  { icon: '💻', title: 'Full-Stack Delivery', desc: 'Shipping the React/Node.js interfaces that put agents in front of users.' },
+  { icon: '🧪', title: 'Manual & Exploratory', desc: 'Requirement analysis, test scenarios and exploratory sessions that catch what scripts miss.' },
+  { icon: '🤖', title: 'Test Automation', desc: 'Selenium, PyTest, Cypress and Playwright suites built on clean, maintainable patterns.' },
+  { icon: '🔌', title: 'API Testing', desc: 'Postman collections that verify status codes, payloads, schemas and negative cases.' },
+  { icon: '📈', title: 'Performance Testing', desc: 'JMeter load and stress tests that reveal bottlenecks before real users do.' },
+]
+
+export const EXPERIENCE = [
+  {
+    role: 'SQA Engineer',
+    company: 'Softerio Solutions',
+    location: 'Lahore, Pakistan',
+    period: 'Present',
+    focus: 'Manual & Automation Testing',
+    points: [
+      'Writing test plans, scenarios and test cases from requirements and user stories',
+      'Executing functional, smoke, regression and cross-browser testing on web applications',
+      'Automating UI tests with Selenium (Python + PyTest), Cypress and Playwright',
+      'Testing REST APIs with Postman and running load tests with JMeter',
+      'Logging, tracking and re-verifying defects in Jira alongside developers',
+    ],
+  },
+  {
+    role: 'Web Developer',
+    company: 'remotebirdy.com',
+    href: 'https://remotebirdy.com/',
+    location: 'Remote',
+    period: 'Project-based',
+    focus: 'Full-Stack Development',
+    points: [
+      'Full-stack feature development, API integration and documentation',
+      'A developer’s view of how bugs are introduced — which now shapes how I test',
+    ],
+  },
 ]
 
 export const PROCESS_STEPS = [
-  { title: 'Discover', desc: 'Understand your workflow, pain points, and automation goals.' },
-  { title: 'Design', desc: 'Architect the agent logic, tools, and data flow.' },
-  { title: 'Build', desc: 'Develop, integrate APIs/LLMs, and test rigorously.' },
-  { title: 'Deploy', desc: 'Launch, monitor, and optimize for real-world performance.' },
-]
-
-export const TESTIMONIALS = [
-  {
-    quote: 'Sunaina built us an AI agent that automated our entire lead-qualification process. We saved 20+ hours a week.',
-    name: 'Placeholder Client',
-    role: 'Product Lead, AI Startup',
-  },
-  {
-    quote: 'Incredible technical depth and communication. The agent worked exactly as promised — no hallucinations, no downtime.',
-    name: 'Placeholder Collaborator',
-    role: 'Engineering Manager',
-  },
-  {
-    quote: 'Clear communicator, thinks about failure cases and evals — not just demos. Exactly what we needed for a production agent.',
-    name: 'Placeholder Reviewer',
-    role: 'Freelance Client',
-  },
+  { title: 'Analyze', desc: 'Review requirements and acceptance criteria, clarify gaps, and identify risk areas.' },
+  { title: 'Plan & Design', desc: 'Define the test strategy, write test cases and prepare test data with full traceability.' },
+  { title: 'Execute & Report', desc: 'Run manual and automated tests and log clear, reproducible defects in Jira.' },
+  { title: 'Regress & Sign Off', desc: 'Re-test fixes, run the automated regression suite and confirm release readiness.' },
 ]
 
 export const HERO_TAGLINES = [
-  'Software Engineer | AI Engineer',
-  'Full Stack Software Engineer',
-  'Building AI-Powered Web Applications',
-  'React · Python · Flask · AI Applications',
-  'From Idea to Production',
-  'React · Node.js · Python · LangChain',
+  'SQA Engineer | QA Automation Engineer',
+  'Manual & Automation Testing',
+  'Selenium · PyTest · Cypress · Playwright',
+  'API Testing with Postman',
+  'Performance Testing with JMeter',
+  'Quality, Release After Release',
 ]
 
 export const NAV_LINKS = [
@@ -337,6 +410,4 @@ export const NAV_LINKS = [
   { to: '/contact', label: 'Contact' },
 ]
 
-export const FOOTER_SPECIALIZATIONS = ['AI Agents', 'RAG Systems', 'Vector Databases', 'LLM Integration', 'LangChain', 'LangGraph', 'Full-Stack Dev', 'Automation']
-
-export const FOOTER_STACK = ['Python', 'React', 'Node.js', 'FastAPI', 'Flask', 'Docker', 'OpenAI', 'Claude', 'Cursor', 'LangChain', 'LangGraph']
+export const FOOTER_SPECIALIZATIONS = ['Manual Testing', 'Test Automation', 'Selenium & PyTest', 'Cypress & Playwright', 'API Testing', 'Performance Testing', 'Bug Tracking', 'STLC']

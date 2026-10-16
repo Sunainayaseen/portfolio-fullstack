@@ -1,43 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { getProjects, addProject } from '../api'
 import { ContactIcons, PROJECTS } from '../data'
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState(PROJECTS)
-  const [projectsLoading, setProjectsLoading] = useState(true)
+  const projects = PROJECTS
 
   useEffect(() => {
     document.title = 'Projects | Sunaina Yaseen'
   }, [])
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const data = await getProjects()
-        if (Array.isArray(data) && data.length > 0) setProjects(data)
-      } catch {
-        setProjects(PROJECTS)
-      } finally {
-        setProjectsLoading(false)
-      }
-    }
-    fetchProjects()
-  }, [])
-
-  const handleAddProject = async () => {
-    const title = prompt('Project title?')
-    if (!title) return
-    const description = prompt('Description?') || ''
-    const imageUrl = prompt('Image URL? (optional)') || ''
-    try {
-      await addProject({ title, description, imageUrl })
-      const data = await getProjects()
-      setProjects(Array.isArray(data) ? data : [])
-    } catch (err) {
-      alert(err.message || 'Could not add project')
-    }
-  }
 
   return (
     <section className="section projects visible page-section">
@@ -48,10 +18,9 @@ export default function ProjectsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Agents I&apos;ve Built, Problems I&apos;ve Solved
+          QA Projects &amp; Test Suites
         </motion.h2>
-        <p className="section-subtitle">AI agent &amp; full-stack development projects</p>
-        {projectsLoading && <p className="section-subtitle" style={{ marginTop: '-1rem' }}>Loading projects…</p>}
+        <p className="section-subtitle">Automation frameworks, API test suites and performance testing</p>
         <div className="projects-grid">
           {projects.map((project, i) => {
             const toolTags = project.tools ? project.tools.split(',').map((t) => t.trim()) : []
@@ -137,7 +106,6 @@ export default function ProjectsPage() {
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
             </span>
           </a>
-          
         </div>
       </div>
     </section>

@@ -95,9 +95,9 @@ export default function ContactSection({ className = '' }) {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5 }}
         >
-          Got an Idea? Let&apos;s Turn It Into An Agent.
+          Need a Release You Can Trust? Let&apos;s Talk.
         </motion.h2>
-        <p className="section-subtitle">Whether it's automation, an AI assistant, or a full agentic system — I'll help you build it right.</p>
+        <p className="section-subtitle">Whether it's an SQA role, a test strategy, or an automation suite, I'd love to hear about it.</p>
 
         <div className="contact-layout">
           <motion.div

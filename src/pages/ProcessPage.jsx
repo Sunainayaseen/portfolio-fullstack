@@ -9,8 +9,8 @@ export default function ProcessPage() {
   return (
     <section className="section process visible page-section">
       <div className="container">
-        <h2 className="section-title">How I Bring Agents To Life</h2>
-        <p className="section-subtitle">From idea to a shipped, reliable agent</p>
+        <h2 className="section-title">How I Test</h2>
+        <p className="section-subtitle">A structured STLC, from requirements to release sign-off</p>
         <div className="process-timeline">
           {PROCESS_STEPS.map((step, i) => (
             <div key={step.title} className="process-step card-shine" style={{ '--delay': `${i * 0.1}s` }}>

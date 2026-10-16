@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
-  ABOUT_BEYOND, ABOUT_EDUCATION, ABOUT_GOALS, ABOUT_INFO, ABOUT_JOURNEY, CERTIFICATIONS, CertIcon,
+  ABOUT_BEYOND, ABOUT_EDUCATION, ABOUT_GOALS, ABOUT_INFO, ABOUT_JOURNEY, ABOUT_STRENGTHS, CERTIFICATIONS, CertIcon, EXPERIENCE,
 } from '../data'
 
 const fadeUp = {
@@ -23,9 +23,9 @@ export default function AboutPage() {
         <div className="about-bg" aria-hidden="true" />
         <div className="container container--about">
           <header className="about-header">
-            <h2 className="section-title about-title">I Don&apos;t Just Build Apps — I Build Agents That Work For You</h2>
+            <h2 className="section-title about-title">I Break Things Before Your Users Do</h2>
             <p className="about-intro">
-              I'm Sunaina Yaseen, a Software Engineer passionate about building scalable web applications and AI-powered products. I specialize in React.js, Python, Flask, JavaScript, and modern AI technologies — designing tools that don't just respond, but reason, plan, and act.
+              I'm Sunaina Yaseen, an SQA Engineer who makes sure software works the way it should, and keeps working after every release. I pair hands-on manual testing with automation in Selenium, PyTest, Cypress and Playwright, plus API testing in Postman and performance testing in JMeter.
             </p>
             <div className="about-header-decoration">
               <span className="about-header-line" aria-hidden="true" />
@@ -50,10 +50,10 @@ export default function AboutPage() {
               <div className="about-card-accent" aria-hidden="true" />
               <div className="about-card-glow" aria-hidden="true" />
               <p className="about-lead">
-                From <strong>multi-agent pipelines</strong> to <strong>RAG-powered assistants</strong>, I turn complex AI logic into seamless, production-ready products — combining <strong>LLM integration</strong>, <strong>autonomous workflows</strong>, and <strong>Full-Stack Web Development</strong>.
+                From <strong>test plans</strong> to <strong>automated regression suites</strong>, I help teams ship with confidence by combining <strong>manual &amp; exploratory testing</strong>, <strong>UI test automation</strong>, and <strong>API &amp; performance testing</strong>.
               </p>
               <p className="about-text">
-                My experience includes designing <strong>multi-step agent workflows</strong>, building <strong>RAG pipelines</strong> with vector databases, wiring up tool/function calling, and shipping the React/Node.js interfaces that put those agents in front of users. I collaborate closely with product and dev teams, focusing on problem-solving, clear documentation, and delivering dependable AI-powered software.
+                My background in <strong>software development</strong> means I read code, understand how features are built, and write <strong>bug reports developers can act on immediately</strong>, with clear steps, expected vs. actual results, logs and screenshots. I work closely with developers and product teams across the full <strong>STLC</strong>, from requirement analysis to release sign-off.
               </p>
             </div>
 
@@ -61,11 +61,9 @@ export default function AboutPage() {
               <div className="about-highlights-accent" aria-hidden="true" />
               <h3 className="about-highlights-title">Core Strengths</h3>
               <ul className="about-highlights-list">
-                <li><span className="about-highlight-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>AI agent architecture</li>
-                <li><span className="about-highlight-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>LLM &amp; RAG integration</li>
-                <li><span className="about-highlight-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Full-stack delivery</li>
-                <li><span className="about-highlight-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Analytical &amp; problem-solving</li>
-                <li><span className="about-highlight-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Continuous learning</li>
+                {ABOUT_STRENGTHS.map((item) => (
+                  <li key={item}><span className="about-highlight-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>{item}</li>
+                ))}
               </ul>
             </aside>
           </div>
@@ -89,7 +87,7 @@ export default function AboutPage() {
           </div>
 
           <div className="about-beyond">
-            <h3 className="about-beyond-title">Beyond Code</h3>
+            <h3 className="about-beyond-title">What I Bring</h3>
             <div className="about-beyond-grid">
               {ABOUT_BEYOND.map((item, i) => (
                 <div key={item.title} className="about-beyond-card card-shine" style={{ '--delay': `${i * 0.08}s` }}>
@@ -136,20 +134,21 @@ export default function AboutPage() {
       >
         <div className="container">
           <h2 className="section-title">Professional Experience</h2>
-          <p className="section-subtitle">My AI development journey</p>
+          <p className="section-subtitle">Where I&apos;ve applied quality engineering</p>
           <div className="experience-card card-shine">
-            <h3 className="exp-role">Software Engineer · Softerio Solutions · Lahore, Pakistan · Present</h3>
-            <p className="exp-meta">AI Agents &amp; Full-Stack Development</p>
-            <ul className="exp-list">
-              <li>Designing and building autonomous AI agents with tool/function calling</li>
-              <li>Integrating LLM APIs (Claude, OpenAI) and RAG pipelines into web apps</li>
-              <li>Building full-stack interfaces (React, Node.js) around agent workflows</li>
-              <li>Collaborating with product teams to ship reliable AI-powered features</li>
-            </ul>
-            <h3 className="exp-role" style={{ marginTop: '1.5rem' }}>Web Developer (Remote, Project-based) <a href="https://remotebirdy.com/" target="_blank" rel="noopener noreferrer" className="exp-link">remotebirdy.com</a></h3>
-            <ul className="exp-list">
-              <li>Full-stack feature development, API integration &amp; documentation</li>
-            </ul>
+            {EXPERIENCE.map((job, i) => (
+              <div key={job.company} className="exp-entry" style={i > 0 ? { marginTop: '1.75rem' } : undefined}>
+                <h3 className="exp-role">
+                  {job.role} · {job.href ? (
+                    <a href={job.href} target="_blank" rel="noopener noreferrer" className="exp-link">{job.company}</a>
+                  ) : job.company}
+                </h3>
+                <p className="exp-meta">{job.focus} · {job.location} · {job.period}</p>
+                <ul className="exp-list">
+                  {job.points.map((point) => <li key={point}>{point}</li>)}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </motion.section>

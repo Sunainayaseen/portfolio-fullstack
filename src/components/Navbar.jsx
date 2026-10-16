@@ -50,12 +50,12 @@ export default function Navbar() {
           ))}
           <li className="nav-menu-cta-item">
             <button type="button" className="nav-cta" onClick={goContact}>
-              Let&apos;s Build →
+              Hire Me →
             </button>
           </li>
         </ul>
         <button type="button" className="nav-cta nav-cta-desktop" onClick={goContact}>
-          Let&apos;s Build →
+          Hire Me →
         </button>
         <button
           type="button"

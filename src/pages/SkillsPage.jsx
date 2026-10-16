@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { SKILLS_DETAILED, SKILLS_STATS, SkillIcons } from '../data'
+import { SKILL_GROUPS, SKILLS_STATS, SkillIcons } from '../data'
 
 export default function SkillsPage() {
   useEffect(() => {
@@ -13,11 +13,11 @@ export default function SkillsPage() {
         <header className="skills-header">
           <div className="skills-header-inner">
             <span className="skills-header-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="3" /><path d="M9 9h.01M15 9h.01M9 15h.01M15 15h.01" /></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg>
             </span>
-            <h2 className="skills-header-title section-title">AI, Agents &amp; Full-Stack Skills</h2>
+            <h2 className="skills-header-title section-title">Testing &amp; QA Skills</h2>
             <p className="section-subtitle skills-intro">
-              Technical expertise and tooling used to build agentic AI systems and full-stack products.
+              Manual testing depth, automation that scales, and the tools that keep quality inside every sprint.
             </p>
           </div>
         </header>
@@ -37,33 +37,37 @@ export default function SkillsPage() {
           ))}
         </div>
 
-        <div className="skills-progress-grid">
-          {SKILLS_DETAILED.map((skill, i) => {
-            const Icon = SkillIcons[skill.icon]
+        <div className="skill-group-grid">
+          {SKILL_GROUPS.map((group, i) => {
+            const GroupIcon = SkillIcons[group.icon]
             return (
-              <motion.div
-                key={skill.name}
-                className="skill-progress-card card-shine"
+              <motion.article
+                key={group.title}
+                className="skill-group-card card-shine"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: i * 0.04 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.45, delay: i * 0.08 }}
               >
-                <span className="skill-progress-icon">{Icon ? <Icon /> : null}</span>
-                <div className="skill-progress-info">
-                  <span className="skill-progress-name">{skill.name}</span>
-                  <span className="skill-progress-percent">{skill.percent}%</span>
-                </div>
-                <div className="skill-progress-track">
-                  <motion.div
-                    className="skill-progress-fill"
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.percent}%` }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, delay: 0.2 + i * 0.04, ease: 'easeOut' }}
-                  />
-                </div>
-              </motion.div>
+                <header className="skill-group-head">
+                  <span className="skill-group-icon">{GroupIcon ? <GroupIcon /> : null}</span>
+                  <div>
+                    <h3 className="skill-group-title">{group.title}</h3>
+                    <p className="skill-group-desc">{group.desc}</p>
+                  </div>
+                </header>
+                <ul className="skill-chip-list">
+                  {group.items.map((item) => {
+                    const Icon = SkillIcons[item.icon]
+                    return (
+                      <li key={item.name} className="skill-chip">
+                        <span className="skill-chip-icon">{Icon ? <Icon /> : null}</span>
+                        {item.name}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </motion.article>
             )
           })}
         </div>

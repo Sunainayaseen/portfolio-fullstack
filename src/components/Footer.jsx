@@ -13,7 +13,7 @@ export default function Footer() {
               <span className="footer-brand-name">Sunaina Yaseen</span>
             </div>
             <p className="footer-brand-tagline">
-              Building autonomous AI agents, intelligent automation, and production-grade full-stack software.
+              SQA Engineer making every release reliable through manual testing, test automation, and API &amp; performance testing.
             </p>
           </div>
 
@@ -71,7 +71,7 @@ export default function Footer() {
         <div className="footer-bottom">
           <p className="footer-text">© {new Date().getFullYear()} Sunaina Yaseen. All rights reserved.</p>
           <div className="footer-bottom-links">
-            <span>Built with care &amp; AI</span>
+            <span>Built &amp; tested with care</span>
           </div>
         </div>
       </div>
