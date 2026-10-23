@@ -4528,3 +4528,19 @@ main:focus {
   transform: translateY(-2px);
 }
 
+
+/* Pin card actions to the bottom so "View details" / GitHub buttons line up across a row */
+.project-card .project-link {
+  margin-top: auto;
+  padding-top: 1rem;
+  align-self: flex-start;
+}
+
+.project-card .project-card-actions {
+  margin-top: auto;
+  padding-top: 1.15rem;
+}
+
+.project-card .project-desc {
+  margin-bottom: 0;
+}
