@@ -4537,3 +4537,46 @@ main:focus {
   border-color: #25D366;
   transform: translateY(-2px);
 }
+
+/* Delivery failure: one short line + two compact actions instead of stacked links */
+.form-error--delivery {
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.9rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: rgba(248, 113, 113, 0.06);
+  font-weight: 500;
+}
+
+.form-error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.form-error-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 36px;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: border-color 0.25s, transform 0.25s var(--ease-spring);
+}
+
+.form-error-chip .contact-icon-svg {
+  width: 15px;
+  height: 15px;
+}
+
+.form-error-chip:hover {
+  border-color: var(--pop);
+  transform: translateY(-1px);
+}

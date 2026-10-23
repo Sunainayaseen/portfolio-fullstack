@@ -64,7 +64,8 @@ async function sendViaFormSubmit({ name, email, subject, message }) {
     })
     const data = await res.json().catch(() => ({}))
     if (res.ok && String(data.success) === 'true') return { ok: true }
-    return { ok: false, message: data.message }
+    // FormSubmit's own text is long and owner-facing (e.g. the one-time activation notice); keep the UI message short
+    return { ok: false }
   } catch {
     return { ok: false }
   }
@@ -168,7 +169,7 @@ export default function ContactSection({ className = '', isPage = false }) {
       if (backup.ok) return markSent()
 
       setFormError(true)
-      setFormErrorMsg(backup.message || 'The message service is unavailable right now.')
+      setFormErrorMsg("Your message couldn't be sent right now. Reach me directly instead:")
       setMailtoFallback(buildMailto(formData))
     } finally {
       setFormSubmitting(false)
@@ -295,17 +296,19 @@ export default function ContactSection({ className = '', isPage = false }) {
                 ) : (
                   <>
                     {formError && (
-                      <div className="form-error" role="alert">
-                        <p>{formErrorMsg || 'Could not send. Try again or email me directly below.'}</p>
+                      <div className={`form-error ${mailtoFallback ? 'form-error--delivery' : ''}`} role="alert">
+                        <p>{formErrorMsg || 'Could not send. Please try again.'}</p>
                         {mailtoFallback && (
-                          <a href={mailtoFallback} className="form-mailto-fallback">
-                            Send via your email app instead →
-                          </a>
-                        )}
-                        {mailtoFallback && (
-                          <a href={buildWhatsApp(formData)} target="_blank" rel="noopener noreferrer" className="form-mailto-fallback">
-                            Or send it on WhatsApp →
-                          </a>
+                          <div className="form-error-actions">
+                            <a href={mailtoFallback} className="form-error-chip">
+                              <ContactIcons.Email />
+                              Email me
+                            </a>
+                            <a href={buildWhatsApp(formData)} target="_blank" rel="noopener noreferrer" className="form-error-chip">
+                              <ContactIcons.WhatsApp />
+                              WhatsApp me
+                            </a>
+                          </div>
                         )}
                       </div>
                     )}
