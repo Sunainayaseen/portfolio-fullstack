@@ -9,15 +9,6 @@ const OWNER_EMAIL = 'sunainayaseen561@gmail.com'
 const REQUEST_TIMEOUT_MS = 15000
 const WHATSAPP_NUMBER = '923201436593'
 
-// Fallback when the API can't be reached: open the visitor's mail app with their message pre-filled
-function buildMailto({ name, email, subject, message }) {
-  const params = new URLSearchParams({
-    subject: subject || `Message from ${name || 'Portfolio'}`,
-    body: `${message}\n\n— ${name} (${email})`,
-  })
-  return `mailto:${OWNER_EMAIL}?${params.toString().replace(/\+/g, '%20')}`
-}
-
 // Opens WhatsApp (app or web) with the visitor's message pre-typed to my number
 function buildWhatsApp({ name, email, subject, message }) {
   const header = `Hi Sunaina, I'm ${name} (${email}).${subject ? `\nSubject: ${subject}` : ''}`
@@ -100,7 +91,6 @@ export default function ContactSection({ className = '', isPage = false }) {
   const [formError, setFormError] = useState(false)
   const [formErrorMsg, setFormErrorMsg] = useState('')
   const [fieldErrors, setFieldErrors] = useState({})
-  const [mailtoFallback, setMailtoFallback] = useState('')
 
   const updateField = (field) => (e) => {
     const { value } = e.target
@@ -124,7 +114,6 @@ export default function ContactSection({ className = '', isPage = false }) {
     e.preventDefault()
     setFormError(false)
     setFormErrorMsg('')
-    setMailtoFallback('')
 
     const errors = validateContactForm(formData)
     setFieldErrors(errors)
@@ -169,8 +158,7 @@ export default function ContactSection({ className = '', isPage = false }) {
       if (backup.ok) return markSent()
 
       setFormError(true)
-      setFormErrorMsg("Your message couldn't be sent right now. Reach me directly instead:")
-      setMailtoFallback(buildMailto(formData))
+      setFormErrorMsg("Your message couldn't be sent. Please try again in a moment.")
     } finally {
       setFormSubmitting(false)
     }
@@ -296,20 +284,8 @@ export default function ContactSection({ className = '', isPage = false }) {
                 ) : (
                   <>
                     {formError && (
-                      <div className={`form-error ${mailtoFallback ? 'form-error--delivery' : ''}`} role="alert">
+                      <div className="form-error" role="alert">
                         <p>{formErrorMsg || 'Could not send. Please try again.'}</p>
-                        {mailtoFallback && (
-                          <div className="form-error-actions">
-                            <a href={mailtoFallback} className="form-error-chip">
-                              <ContactIcons.Email />
-                              Email me
-                            </a>
-                            <a href={buildWhatsApp(formData)} target="_blank" rel="noopener noreferrer" className="form-error-chip">
-                              <ContactIcons.WhatsApp />
-                              WhatsApp me
-                            </a>
-                          </div>
-                        )}
                       </div>
                     )}
                     <button type="submit" className="form-submit btn-primary" disabled={formSubmitting} aria-busy={formSubmitting}>
