@@ -8,6 +8,8 @@ const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
 const OWNER_EMAIL = 'sunainayaseen561@gmail.com'
 const REQUEST_TIMEOUT_MS = 15000
 const WHATSAPP_NUMBER = '923201436593'
+// FormSubmit's alias for OWNER_EMAIL (from the activation email), so the address isn't exposed in the request
+const FORMSUBMIT_ID = '06ad5c1dfb3572ea0cd80a31f1f371c4'
 
 // Opens WhatsApp (app or web) with the visitor's message pre-typed to my number
 function buildWhatsApp({ name, email, subject, message }) {
@@ -38,10 +40,10 @@ async function sendViaApi(payload) {
 }
 
 // Backup: FormSubmit emails the message straight from the browser, no server or API key needed.
-// The first submission ever triggers a one-time "Activate Form" email to OWNER_EMAIL.
+// Already activated for OWNER_EMAIL; a new site domain may trigger one more activation email.
 async function sendViaFormSubmit({ name, email, subject, message }) {
   try {
-    const res = await fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
+    const res = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_ID}`, {
       method: 'POST',
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
