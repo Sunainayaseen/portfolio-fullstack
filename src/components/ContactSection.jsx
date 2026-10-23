@@ -5,6 +5,70 @@ import { ContactIcons } from '../data'
 // Same-origin by default: Vercel serves /api/contact, and Vite proxies /api to Flask in dev.
 const API_BASE = import.meta.env.VITE_API_URL || ''
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
+const OWNER_EMAIL = 'sunainayaseen561@gmail.com'
+const REQUEST_TIMEOUT_MS = 15000
+const WHATSAPP_NUMBER = '923201436593'
+
+// Fallback when the API can't be reached: open the visitor's mail app with their message pre-filled
+function buildMailto({ name, email, subject, message }) {
+  const params = new URLSearchParams({
+    subject: subject || `Message from ${name || 'Portfolio'}`,
+    body: `${message}\n\n— ${name} (${email})`,
+  })
+  return `mailto:${OWNER_EMAIL}?${params.toString().replace(/\+/g, '%20')}`
+}
+
+// Opens WhatsApp (app or web) with the visitor's message pre-typed to my number
+function buildWhatsApp({ name, email, subject, message }) {
+  const header = `Hi Sunaina, I'm ${name} (${email}).${subject ? `\nSubject: ${subject}` : ''}`
+  const text = `${header}\n\n${message}`
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
+}
+
+// Primary: our own /api/contact (Vercel function, or Flask via the Vite proxy in dev).
+// Requires the API's own confirmation, so a 200 HTML page (e.g. an SPA fallback) never counts as "sent".
+async function sendViaApi(payload) {
+  try {
+    const res = await fetch(`${API_BASE}/api/contact`, {
+      method: 'POST',
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (res.ok && data.status === 'success') return { ok: true }
+    if (res.status === 400 && data.errors) return { ok: false, fieldErrors: data.errors }
+    return { ok: false }
+  } catch {
+    return { ok: false }
+  }
+}
+
+// Backup: FormSubmit emails the message straight from the browser, no server or API key needed.
+// The first submission ever triggers a one-time "Activate Form" email to OWNER_EMAIL.
+async function sendViaFormSubmit({ name, email, subject, message }) {
+  try {
+    const res = await fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
+      method: 'POST',
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+        _subject: `[Portfolio Contact] ${subject}`,
+        _replyto: email,
+        _template: 'table',
+        _captcha: 'false',
+      }),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (res.ok && String(data.success) === 'true') return { ok: true }
+    return { ok: false, message: data.message }
+  } catch {
+    return { ok: false }
+  }
+}
 
 function validateContactForm(data) {
   const errors = {}
@@ -35,6 +99,7 @@ export default function ContactSection({ className = '', isPage = false }) {
   const [formError, setFormError] = useState(false)
   const [formErrorMsg, setFormErrorMsg] = useState('')
   const [fieldErrors, setFieldErrors] = useState({})
+  const [mailtoFallback, setMailtoFallback] = useState('')
 
   const updateField = (field) => (e) => {
     const { value } = e.target
@@ -42,10 +107,23 @@ export default function ContactSection({ className = '', isPage = false }) {
     if (fieldErrors[field]) setFieldErrors((errs) => ({ ...errs, [field]: undefined }))
   }
 
+  const handleWhatsApp = () => {
+    const errors = validateContactForm(formData)
+    setFieldErrors(errors)
+    if (Object.keys(errors).length > 0) {
+      setFormError(true)
+      setFormErrorMsg('Please fix the highlighted fields below.')
+      return
+    }
+    setFormError(false)
+    window.open(buildWhatsApp(formData), '_blank', 'noopener,noreferrer')
+  }
+
   const handleContactSubmit = async (e) => {
     e.preventDefault()
     setFormError(false)
     setFormErrorMsg('')
+    setMailtoFallback('')
 
     const errors = validateContactForm(formData)
     setFieldErrors(errors)
@@ -55,39 +133,43 @@ export default function ContactSection({ className = '', isPage = false }) {
       return
     }
 
+    const payload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      subject: formData.subject.trim() || `Message from ${formData.name.trim() || 'Portfolio'}`,
+      message: formData.message.trim(),
+      website: formData.website,
+    }
+    const markSent = () => {
+      setFormSubmitted(true)
+      setFieldErrors({})
+      setFormData({ name: '', email: '', subject: '', message: '', website: '' })
+    }
+
+    // Honeypot filled: only bots see this field, so pretend it worked and send nothing
+    if (payload.website.trim()) {
+      markSent()
+      return
+    }
+
     setFormSubmitting(true)
     try {
-      const res = await fetch(`${API_BASE}/api/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject || `Message from ${formData.name || 'Portfolio'}`,
-          message: formData.message,
-          website: formData.website,
-        }),
-      })
-      const data = await res.json().catch(() => ({}))
-      if (res.ok) {
-        setFormSubmitted(true)
-        setFieldErrors({})
-        setFormData({ name: '', email: '', subject: '', message: '', website: '' })
-      } else if (res.status === 400 && data.errors) {
-        setFieldErrors(data.errors)
+      const api = await sendViaApi(payload)
+      if (api.ok) return markSent()
+      if (api.fieldErrors) {
+        setFieldErrors(api.fieldErrors)
         setFormError(true)
         setFormErrorMsg('Please fix the highlighted fields below.')
-      } else {
-        setFormError(true)
-        setFormErrorMsg((data.errors && data.errors._global) || data.msg || `Server error ${res.status}`)
+        return
       }
-    } catch {
+
+      // Own API blocked, unconfigured or down: deliver through FormSubmit instead
+      const backup = await sendViaFormSubmit(payload)
+      if (backup.ok) return markSent()
+
       setFormError(true)
-      setFormErrorMsg(
-        import.meta.env.DEV
-          ? 'Backend not reachable. Start Flask: cd portfolio-backend && python app.py'
-          : 'Network error. Please check your connection, or email me directly at sunainayaseen561@gmail.com.',
-      )
+      setFormErrorMsg(backup.message || 'The message service is unavailable right now.')
+      setMailtoFallback(buildMailto(formData))
     } finally {
       setFormSubmitting(false)
     }
@@ -213,10 +295,26 @@ export default function ContactSection({ className = '', isPage = false }) {
                 ) : (
                   <>
                     {formError && (
-                      <p className="form-error" role="alert">{formErrorMsg || 'Could not send. Try again or email me directly below.'}</p>
+                      <div className="form-error" role="alert">
+                        <p>{formErrorMsg || 'Could not send. Try again or email me directly below.'}</p>
+                        {mailtoFallback && (
+                          <a href={mailtoFallback} className="form-mailto-fallback">
+                            Send via your email app instead →
+                          </a>
+                        )}
+                        {mailtoFallback && (
+                          <a href={buildWhatsApp(formData)} target="_blank" rel="noopener noreferrer" className="form-mailto-fallback">
+                            Or send it on WhatsApp →
+                          </a>
+                        )}
+                      </div>
                     )}
                     <button type="submit" className="form-submit btn-primary" disabled={formSubmitting} aria-busy={formSubmitting}>
                       {formSubmitting ? 'Sending…' : 'Send message'}
+                    </button>
+                    <button type="button" className="form-whatsapp" onClick={handleWhatsApp}>
+                      <ContactIcons.WhatsApp />
+                      Send on WhatsApp
                     </button>
                   </>
                 )}
@@ -254,6 +352,13 @@ export default function ContactSection({ className = '', isPage = false }) {
                   </span>
                   <h3>GitHub</h3>
                   <p>View my repositories</p>
+                </a>
+                <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" className="contact-card card-shine">
+                  <span className="contact-icon">
+                    <ContactIcons.WhatsApp />
+                  </span>
+                  <h3>WhatsApp</h3>
+                  <p>Chat with me</p>
                 </a>
                 <a href="tel:+923201436593" className="contact-card card-shine">
                   <span className="contact-icon">

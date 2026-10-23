@@ -2,6 +2,7 @@
 // Mirrors portfolio-backend/app.py so the deployed site can send mail without a separate server.
 // Required Vercel env vars: SMTP_USER, SMTP_PASSWORD (Gmail App Password), OWNER_EMAIL.
 // Optional: SMTP_HOST (default smtp.gmail.com), SMTP_PORT (default 587), MAIL_FROM_NAME.
+// Optional WhatsApp alert via CallMeBot: CALLMEBOT_APIKEY, WHATSAPP_PHONE (e.g. +923201436593).
 import nodemailer from 'nodemailer'
 
 const NAME_MAX = 100
@@ -32,6 +33,20 @@ function validate(data) {
   return {
     errors,
     cleaned: { name, email, subject: subject || `New message from ${name || 'website visitor'}`, message },
+  }
+}
+
+// Best-effort WhatsApp alert to the owner; never blocks or fails the request.
+async function notifyWhatsApp(entry) {
+  const { CALLMEBOT_APIKEY, WHATSAPP_PHONE } = process.env
+  if (!CALLMEBOT_APIKEY || !WHATSAPP_PHONE) return
+  const text = `New portfolio message\nFrom: ${entry.name} (${entry.email})\nSubject: ${entry.subject}\n\n${entry.message.slice(0, 1200)}`
+  const url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(WHATSAPP_PHONE)}&text=${encodeURIComponent(text)}&apikey=${encodeURIComponent(CALLMEBOT_APIKEY)}`
+  try {
+    const r = await fetch(url, { signal: AbortSignal.timeout(8000) })
+    if (!r.ok) console.error('Contact form: WhatsApp alert failed with status', r.status)
+  } catch (err) {
+    console.error('Contact form: WhatsApp alert failed', err)
   }
 }
 
@@ -86,6 +101,8 @@ export default async function handler(req, res) {
     console.error('Contact form: failed to send owner email', err)
     return res.status(502).json({ status: 'error', errors: { _global: 'Could not send your message right now. Please email me directly.' } })
   }
+
+  await notifyWhatsApp(cleaned)
 
   // Confirmation to the visitor is best-effort; the owner already has the message.
   try {

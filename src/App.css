@@ -4479,3 +4479,61 @@ main:focus {
     transition: none !important;
   }
 }
+
+.form-error p {
+  margin: 0;
+}
+
+.form-mailto-fallback {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  margin-top: 0.35rem;
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Chrome autofill paints inputs light blue, which clashes with the dark theme */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus,
+.form-textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--text);
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-elevated) inset;
+  box-shadow: 0 0 0 1000px var(--bg-elevated) inset;
+  transition: background-color 9999s ease-out 0s;
+}
+
+/* WhatsApp: secondary action under the main submit button */
+.form-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s, transform 0.3s var(--ease-spring);
+}
+
+.form-whatsapp .contact-icon-svg {
+  width: 18px;
+  height: 18px;
+  color: #25D366;
+}
+
+.form-whatsapp:hover {
+  border-color: #25D366;
+  transform: translateY(-2px);
+}
