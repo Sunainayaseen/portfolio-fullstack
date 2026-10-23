@@ -258,14 +258,32 @@ export const PROJECTS = [
   },
 ]
 
+export const TOOLKIT_CATEGORIES = [
+  { id: 'all', label: 'All Tools' },
+  { id: 'automation', label: 'UI Automation' },
+  { id: 'api', label: 'API & Performance' },
+  { id: 'code', label: 'Languages & Data' },
+  { id: 'workflow', label: 'Workflow' },
+]
+
 export const TECH_STACK_ICONS = [
-  { name: 'Selenium', icon: 'Selenium' },
-  { name: 'PyTest', icon: 'PyTest' },
-  { name: 'Cypress', icon: 'Cypress' },
-  { name: 'Playwright', icon: 'Playwright' },
-  { name: 'Postman', icon: 'Postman' },
-  { name: 'JMeter', icon: 'JMeter' },
-  { name: 'Jira', icon: 'Jira' },
+  { name: 'Selenium', icon: 'Selenium', category: 'automation', use: 'Cross-browser UI regression' },
+  { name: 'PyTest', icon: 'PyTest', category: 'automation', use: 'Fixtures & test runner' },
+  { name: 'Cypress', icon: 'Cypress', category: 'automation', use: 'Fast end-to-end flows' },
+  { name: 'Playwright', icon: 'Playwright', category: 'automation', use: 'Chromium · Firefox · WebKit' },
+  { name: 'Postman', icon: 'Postman', category: 'api', use: 'REST API validation' },
+  { name: 'JMeter', icon: 'JMeter', category: 'api', use: 'Load & stress testing' },
+  { name: 'Python', icon: 'Python', category: 'code', use: 'Automation scripting' },
+  { name: 'JavaScript', icon: 'JavaScript', category: 'code', use: 'Cypress & Playwright specs' },
+  { name: 'SQL', icon: 'SQL', category: 'code', use: 'Database & data checks' },
+  { name: 'Jira', icon: 'Jira', category: 'workflow', use: 'Defect tracking' },
+  { name: 'GitHub', icon: 'GitHub', category: 'workflow', use: 'Version control for test suites' },
+  { name: 'DevTools', icon: 'DevTools', category: 'workflow', use: 'Network & console debugging' },
+]
+
+export const EXPERTISE_INTRO = [
+  "I'm an SQA Engineer at Softerio Solutions, focused on making sure web applications ship stable, secure and easy to use — through careful manual testing and automation that scales.",
+  "My approach blends requirement-driven test design, UI automation with Selenium, Cypress and Playwright, API validation with Postman and load testing with JMeter, so bugs are caught early and every release is one the team can trust.",
 ]
 
 export const CertIcon = () => (

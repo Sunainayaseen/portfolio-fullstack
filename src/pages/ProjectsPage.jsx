@@ -12,14 +12,14 @@ export default function ProjectsPage() {
   return (
     <section className="section projects visible page-section">
       <div className="container">
-        <motion.h2
+        <motion.h1
           className="section-title"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           QA Projects &amp; Test Suites
-        </motion.h2>
+        </motion.h1>
         <p className="section-subtitle">Automation frameworks, API test suites and performance testing</p>
         <div className="projects-grid">
           {projects.map((project, i) => {
@@ -91,7 +91,7 @@ export default function ProjectsPage() {
                   {githubHref && (
                     <a href={githubHref} target="_blank" rel="noopener noreferrer" className="btn btn-outline project-action-btn">
                       <ContactIcons.GitHub />
-                      GitHub
+                      {githubHref.replace(/\/$/, '') === 'https://github.com/Sunainayaseen' ? 'GitHub Profile' : 'View Code'}
                     </a>
                   )}
                 </div>

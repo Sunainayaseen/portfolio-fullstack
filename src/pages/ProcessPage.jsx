@@ -9,7 +9,7 @@ export default function ProcessPage() {
   return (
     <section className="section process visible page-section">
       <div className="container">
-        <h2 className="section-title">How I Test</h2>
+        <h1 className="section-title">How I Test</h1>
         <p className="section-subtitle">A structured STLC, from requirements to release sign-off</p>
         <div className="process-timeline">
           {PROCESS_STEPS.map((step, i) => (

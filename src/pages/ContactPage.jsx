@@ -6,5 +6,5 @@ export default function ContactPage() {
     document.title = 'Contact | Sunaina Yaseen'
   }, [])
 
-  return <ContactSection className="page-section" />
+  return <ContactSection className="page-section" isPage />
 }

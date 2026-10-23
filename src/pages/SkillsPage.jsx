@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { SKILL_GROUPS, SKILLS_STATS, SkillIcons } from '../data'
+import CountUp from '../components/CountUp'
 
 export default function SkillsPage() {
   useEffect(() => {
@@ -15,7 +16,7 @@ export default function SkillsPage() {
             <span className="skills-header-icon" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg>
             </span>
-            <h2 className="skills-header-title section-title">Testing &amp; QA Skills</h2>
+            <h1 className="skills-header-title section-title">Testing &amp; QA Skills</h1>
             <p className="section-subtitle skills-intro">
               Manual testing depth, automation that scales, and the tools that keep quality inside every sprint.
             </p>
@@ -31,7 +32,7 @@ export default function SkillsPage() {
                 {stat.icon === 'db' && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" /><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" /></svg>}
                 {stat.icon === 'git' && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="6" y1="3" x2="6" y2="15" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 0 1-9 9" /></svg>}
               </span>
-              <span className="skills-stat-value">{stat.value}</span>
+              <span className="skills-stat-value"><CountUp value={stat.value} /></span>
               <span className="skills-stat-label">{stat.label}</span>
             </div>
           ))}

@@ -24,7 +24,7 @@ export default function AboutPage() {
         <div className="about-bg" aria-hidden="true" />
         <div className="container container--about">
           <header className="about-header">
-            <h2 className="section-title about-title">I Break Things Before Your Users Do</h2>
+            <h1 className="section-title about-title">I Break Things Before Your Users Do</h1>
             <p className="about-intro">
               I'm Sunaina Yaseen, an SQA Engineer who makes sure software works the way it should, and keeps working after every release. I pair hands-on manual testing with automation in Selenium, PyTest, Cypress and Playwright, plus API testing in Postman and performance testing in JMeter.
             </p>

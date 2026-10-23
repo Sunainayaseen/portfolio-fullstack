@@ -21,11 +21,11 @@ pdfmetrics.registerFont(TTFont('Cal-I', F + 'calibrii.ttf'))
 pdfmetrics.registerFont(TTFont('Cal-BI', F + 'calibriz.ttf'))
 pdfmetrics.registerFontFamily('Cal', normal='Cal', bold='Cal-B', italic='Cal-I', boldItalic='Cal-BI')
 
-INK = HexColor('#0F172A')
-TEAL = HexColor('#047857')
-AMBER = HexColor('#06B6D4')
-MUTED = HexColor('#475569')
-RULE = HexColor('#CBD5E1')
+INK = HexColor('#0A0A0A')
+TEAL = HexColor('#8A5A00')
+AMBER = HexColor('#FACC15')
+MUTED = HexColor('#52525B')
+RULE = HexColor('#E4E4E7')
 
 name = ParagraphStyle('name', fontName='Cal-B', fontSize=26, leading=29, textColor=INK)
 title = ParagraphStyle('title', fontName='Cal-B', fontSize=12.5, leading=16, textColor=TEAL, spaceBefore=2)
@@ -42,7 +42,7 @@ W = A4[0] - 2 * 16 * mm
 
 
 def link(url, text):
-    return f'<link href="{url}" color="#047857"><u>{text}</u></link>'
+    return f'<link href="{url}" color="#8A5A00"><u>{text}</u></link>'
 
 
 def section(text):
@@ -80,7 +80,7 @@ def skills_table(rows):
 
 def decorate(canvas, doc):
     canvas.saveState()
-    canvas.setFillColor(TEAL)
+    canvas.setFillColor(INK)
     canvas.rect(0, A4[1] - 5, A4[0] * 0.72, 5, stroke=0, fill=1)
     canvas.setFillColor(AMBER)
     canvas.rect(A4[0] * 0.72, A4[1] - 5, A4[0] * 0.28, 5, stroke=0, fill=1)
@@ -102,7 +102,8 @@ s.append(Paragraph(
 
 s += section('Professional Summary')
 s.append(Paragraph(
-    'SQA Engineer with hands-on experience in <b>manual and automated testing</b> of web applications. Skilled in writing '
+    'SQA Engineer with hands-on experience in <b>manual and automated testing</b> of web applications, built through a QA internship at '
+    '<b>9D Technologies</b> and a current SQA role at <b>Softerio Solutions</b>. Skilled in writing '
     'test plans and test cases, automating UI regression with <b>Selenium WebDriver (Python + PyTest)</b>, <b>Cypress</b> and '
     '<b>Playwright</b>, validating REST APIs with <b>Postman</b>, and load testing with <b>Apache JMeter</b>. A full-stack development '
     'background (React.js, Flask, MySQL), including a solo-built production platform, means I understand how software is built, '
@@ -110,8 +111,9 @@ s.append(Paragraph(
 
 s += section('Core Skills')
 s.append(skills_table([
-    ('Testing', 'Manual &amp; Functional Testing, Regression, Smoke, Exploratory, Cross-Browser Testing, UAT Support, '
-                'Test Planning, Test Case Design, Bug Reporting &amp; Tracking, STLC / SDLC'),
+    ('Testing', 'Manual Testing, Requirement Analysis, Test Planning &amp; Strategy, Test Case Design, '
+                'Test Data Preparation, Bug Reporting &amp; Tracking, STLC / SDLC'),
+    ('Testing Types', 'Functional, Regression, Smoke, Sanity, Integration, System, UAT, Exploratory, Cross-Browser, API, Load &amp; Stress, Usability'),
     ('Test Automation', 'Selenium WebDriver, PyTest, Page Object Model (POM), Data-Driven Testing, Cypress, Playwright'),
     ('API &amp; Performance', 'Postman, REST API Testing, JSON Schema Validation, Apache JMeter, Load &amp; Stress Testing'),
     ('Tools', 'Jira, Git, GitHub, Chrome DevTools, Vercel, Railway'),
@@ -127,6 +129,13 @@ s.append(bullets([
     '<b>Automate</b> UI regression suites with Selenium WebDriver (Python + PyTest, Page Object Model), Cypress and Playwright.',
     '<b>Validate</b> REST APIs in Postman (status codes, payloads, schemas and negative cases) and run load tests in Apache JMeter.',
     '<b>Log, track and re-verify</b> defects in Jira, working closely with developers to resolve issues before release.',
+]))
+s.append(Spacer(1, 3))
+s.append(headline('SQA Intern  —  9D Technologies', 'Internship · 3 Months'))
+s.append(bullets([
+    '<b>Wrote and executed</b> test cases for web application features, reporting defects with clear reproduction steps, expected vs. actual results and screenshots.',
+    '<b>Performed</b> functional, UI and regression testing ahead of releases as part of a live product team.',
+    '<b>Learned</b> the full STLC and defect life cycle in a professional workflow, from requirement review to re-testing fixes.',
 ]))
 s.append(Spacer(1, 3))
 s.append(headline('Web Developer  —  remotebirdy.com', 'Remote · Project-based'))
@@ -163,18 +172,15 @@ for t, tools, pts in qa:
 s += section('Final Year Project')
 s.append(KeepTogether([
     headline('GenSpark Builds — Agentic AI Platform for Custom PC Building &amp; Assembly', 'Solo Project · BSCS'),
-    Paragraph('GitHub: ' + link('https://github.com/Sunainayaseen', 'github.com/Sunainayaseen'), sub),
+    Paragraph('GitHub: ' + link('https://github.com/Sunainayaseen/GenSpark', 'github.com/Sunainayaseen/GenSpark')
+              + '  ·  Live: ' + link('https://genspark-frontend.vercel.app', 'genspark-frontend.vercel.app'), sub),
 ]))
 s.append(bullets([
-    '<b>Architected</b> a modular multi-agent system — dedicated agents for requirement analysis, PC recommendation, budget optimization, compatibility validation, vendor selection, QA verification, and notifications — replacing a single monolithic AI workflow with a scalable, specialized pipeline.',
-    '<b>Engineered</b> autonomous LangGraph planning workflows that execute multi-step tasks end-to-end (analyze → recommend → validate → optimize → finalize) with minimal user intervention.',
-    '<b>Built</b> a LangChain tool-calling agent that independently invokes component search, compatibility-checking, price-calculation, and vendor-finder tools to fulfill user requests from start to finish.',
-    '<b>Designed</b> a rule-based compatibility engine paired with a self-correction agent that automatically detects failed compatibility checks and re-validates replacement components on the fly.',
-    '<b>Grounded</b> component recommendations in reality by integrating Retrieval-Augmented Generation (FAISS/ChromaDB) over live MySQL inventory spanning 90+ hardware components across 12 categories — eliminating model guesswork.',
-    '<b>Orchestrated</b> an AI-driven vendor network connecting 20+ verified vendors, automating order assignment and full lifecycle tracking across 4 user roles (Customer, Vendor, Admin, Rider).',
-    '<b>Deployed</b> a YOLOv8-powered QA agent that validates vendor-uploaded assembly photos against ordered components before shipment approval — catching errors before they reach the customer.',
-    '<b>Delivered</b> 30+ REST APIs powering both AI agents and web clients, complete with live rider tracking for order delivery.',
-    '<b>Shipped</b> the entire platform end-to-end — React.js frontend, Flask/Python backend, MySQL database — live in production on Vercel and Railway.',
+    '<b>Built a YOLOv8 QA agent</b> that validates vendor-uploaded assembly photos against the ordered components before shipment approval, catching wrong builds before they reach the customer.',
+    '<b>Designed a rule-based compatibility engine</b> with a self-correction agent that detects failed compatibility checks and automatically re-validates replacement parts.',
+    '<b>Architected a multi-agent LangGraph/LangChain pipeline</b> (requirements → recommendation → budget → compatibility → vendor → QA) with RAG (FAISS/ChromaDB) over a live inventory of 90+ components in 12 categories.',
+    '<b>Delivered 30+ REST APIs</b> serving 4 user roles (Customer, Vendor, Admin, Rider) and 20+ vendors, with order lifecycle and live rider tracking.',
+    '<b>Shipped end-to-end to production</b>: React.js frontend, Flask/Python backend and MySQL, deployed on Vercel and Railway.',
 ]))
 s.append(Paragraph('<b>Tech Stack:</b> React.js, Flask/Python, MySQL, OpenAI/Gemini API, LangChain, LangGraph, MCP, FAISS/ChromaDB, YOLOv8, Git/GitHub', stack))
 

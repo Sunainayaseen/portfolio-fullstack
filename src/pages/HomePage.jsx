@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
-  ABOUT_STATS, HERO_TAGLINES, PROCESS_STEPS, PROJECTS, TECH_STACK_ICONS, SkillIcons,
+  ABOUT_STATS, EXPERTISE_INTRO, HERO_TAGLINES, PROCESS_STEPS, PROJECTS, TECH_STACK_ICONS, TOOLKIT_CATEGORIES, SkillIcons,
 } from '../data'
 import ContactSection from '../components/ContactSection'
 import ExperienceTimeline from '../components/ExperienceTimeline'
@@ -84,20 +84,70 @@ function HeroTestRunner() {
   )
 }
 
+function ToolkitGrid() {
+  const [active, setActive] = useState('all')
+  const countFor = (id) => (id === 'all' ? TECH_STACK_ICONS.length : TECH_STACK_ICONS.filter((t) => t.category === id).length)
+
+  return (
+    <>
+      <div className="toolkit-filters" role="group" aria-label="Filter tools by testing area">
+        {TOOLKIT_CATEGORIES.map((cat) => (
+          <button
+            key={cat.id}
+            type="button"
+            className={`toolkit-filter${active === cat.id ? ' is-active' : ''}`}
+            aria-pressed={active === cat.id}
+            onClick={() => setActive(cat.id)}
+          >
+            {cat.label}
+            <span className="toolkit-filter-count">{countFor(cat.id)}</span>
+          </button>
+        ))}
+      </div>
+      <div className="techstack-icon-grid expertise-grid">
+        {TECH_STACK_ICONS.map((tool, i) => {
+          const Icon = SkillIcons[tool.icon]
+          const dimmed = active !== 'all' && tool.category !== active
+          return (
+            <motion.div
+              key={tool.name}
+              className={`expertise-tile${dimmed ? ' is-dimmed' : ''}`}
+              tabIndex={0}
+              aria-label={`${tool.name}: ${tool.use}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+            >
+              <span className="expertise-tile-inner">
+                <span className="expertise-tile-icon">{Icon ? <Icon /> : null}</span>
+                <span className="expertise-tile-name">{tool.name}</span>
+              </span>
+              <span className="expertise-tile-tip" aria-hidden="true">{tool.use}</span>
+            </motion.div>
+          )
+        })}
+      </div>
+    </>
+  )
+}
+
 export default function HomePage() {
   const navigate = useNavigate()
   const [heroTaglineIndex, setHeroTaglineIndex] = useState(0)
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     document.title = 'Sunaina Yaseen | SQA Engineer | QA Automation'
   }, [])
 
   useEffect(() => {
+    if (reduceMotion) return undefined
     const id = setInterval(() => {
       setHeroTaglineIndex((i) => (i + 1) % HERO_TAGLINES.length)
     }, 3500)
     return () => clearInterval(id)
-  }, [])
+  }, [reduceMotion])
 
   const featuredProjects = PROJECTS.slice(0, 3)
 
@@ -115,10 +165,10 @@ export default function HomePage() {
               Open to SQA &amp; QA Automation roles
             </span>
             <h1 className="hero-reveal hero-name">Sunaina Yaseen</h1>
-            <div className="hero-reveal hero-title-wrap" aria-live="polite">
-              <h2 className="hero-title hero-title-rotating" key={heroTaglineIndex}>
+            <div className="hero-reveal hero-title-wrap">
+              <p className="hero-title hero-title-rotating" key={heroTaglineIndex}>
                 {HERO_TAGLINES[heroTaglineIndex]}
-              </h2>
+              </p>
             </div>
             <p className="hero-reveal hero-tagline">
               I make sure software works before your users find out it doesn&apos;t. I combine thorough manual testing with automation in Selenium, Cypress and Playwright, API testing in Postman, and performance testing in JMeter, so teams can ship every release with confidence.
@@ -162,27 +212,12 @@ export default function HomePage() {
         variants={fadeUp}
       >
         <div className="container techstack-container">
-          <span className="techstack-eyebrow" aria-hidden="true">✓ ✓ ✓</span>
-          <h2 className="section-title">QA Toolkit</h2>
-          <p className="section-subtitle">The testing tools I reach for most.</p>
-          <div className="techstack-icon-grid">
-            {TECH_STACK_ICONS.map((tool, i) => {
-              const Icon = SkillIcons[tool.icon]
-              return (
-                <motion.div
-                  key={tool.name}
-                  className="techstack-icon-card card-shine"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.4, delay: i * 0.06 }}
-                >
-                  <span className="techstack-icon-badge">{Icon ? <Icon /> : null}</span>
-                  <span className="techstack-icon-name">{tool.name}</span>
-                </motion.div>
-              )
-            })}
+          <h2 className="section-title">My Expertise</h2>
+          <div className="expertise-intro">
+            {EXPERTISE_INTRO.map((para) => <p key={para}>{para}</p>)}
           </div>
+          <h3 className="expertise-subtitle">Core Technologies</h3>
+          <ToolkitGrid />
           <Link to="/skills" className="techstack-see-all">See Full Skill Set →</Link>
         </div>
       </motion.section>
@@ -213,7 +248,7 @@ export default function HomePage() {
                 {project.category && <span className="project-category">{project.category}</span>}
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-desc">{project.description}</p>
-                <Link to="/projects" className="project-link">View project ↗</Link>
+                <Link to="/projects" className="project-link">View details →</Link>
               </motion.div>
             ))}
           </div>

@@ -27,13 +27,20 @@ function validateContactForm(data) {
   return errors
 }
 
-export default function ContactSection({ className = '' }) {
+export default function ContactSection({ className = '', isPage = false }) {
+  const Title = isPage ? motion.h1 : motion.h2
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', website: '' })
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [formSubmitting, setFormSubmitting] = useState(false)
   const [formError, setFormError] = useState(false)
   const [formErrorMsg, setFormErrorMsg] = useState('')
   const [fieldErrors, setFieldErrors] = useState({})
+
+  const updateField = (field) => (e) => {
+    const { value } = e.target
+    setFormData((p) => ({ ...p, [field]: value }))
+    if (fieldErrors[field]) setFieldErrors((errs) => ({ ...errs, [field]: undefined }))
+  }
 
   const handleContactSubmit = async (e) => {
     e.preventDefault()
@@ -89,7 +96,7 @@ export default function ContactSection({ className = '' }) {
   return (
     <section className={`section contact visible ${className}`}>
       <div className="container">
-        <motion.h2
+        <Title
           className="section-title"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -97,7 +104,7 @@ export default function ContactSection({ className = '' }) {
           transition={{ duration: 0.5 }}
         >
           Need a Release You Can Trust? Let&apos;s Talk.
-        </motion.h2>
+        </Title>
         <p className="section-subtitle">Whether it's an SQA role, a test strategy, or an automation suite, I'd love to hear about it.</p>
 
         <div className="contact-layout">
@@ -132,8 +139,10 @@ export default function ContactSection({ className = '' }) {
                       type="text"
                       className={`form-input ${fieldErrors.name ? 'field-invalid' : ''}`}
                       placeholder="Your name"
+                      autoComplete="name"
+                      maxLength={100}
                       value={formData.name}
-                      onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
+                      onChange={updateField('name')}
                       aria-invalid={!!fieldErrors.name}
                       aria-describedby={fieldErrors.name ? 'contact-name-error' : undefined}
                       required
@@ -147,8 +156,9 @@ export default function ContactSection({ className = '' }) {
                       type="email"
                       className={`form-input ${fieldErrors.email ? 'field-invalid' : ''}`}
                       placeholder="your@email.com"
+                      autoComplete="email"
                       value={formData.email}
-                      onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
+                      onChange={updateField('email')}
                       aria-invalid={!!fieldErrors.email}
                       aria-describedby={fieldErrors.email ? 'contact-email-error' : undefined}
                       required
@@ -162,9 +172,10 @@ export default function ContactSection({ className = '' }) {
                     id="contact-subject"
                     type="text"
                     className={`form-input ${fieldErrors.subject ? 'field-invalid' : ''}`}
-                    placeholder="e.g. Project Inquiry"
+                    placeholder="e.g. SQA role at your company"
+                    maxLength={150}
                     value={formData.subject}
-                    onChange={(e) => setFormData((p) => ({ ...p, subject: e.target.value }))}
+                    onChange={updateField('subject')}
                     aria-invalid={!!fieldErrors.subject}
                     aria-describedby={fieldErrors.subject ? 'contact-subject-error' : undefined}
                   />
@@ -175,10 +186,11 @@ export default function ContactSection({ className = '' }) {
                   <textarea
                     id="contact-message"
                     className={`form-textarea ${fieldErrors.message ? 'field-invalid' : ''}`}
-                    placeholder="Your message..."
-                    rows={4}
+                    placeholder="Tell me about the role or project (at least 10 characters)"
+                    rows={5}
+                    maxLength={5000}
                     value={formData.message}
-                    onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
+                    onChange={updateField('message')}
                     aria-invalid={!!fieldErrors.message}
                     aria-describedby={fieldErrors.message ? 'contact-message-error' : undefined}
                     required
@@ -193,14 +205,17 @@ export default function ContactSection({ className = '' }) {
                     <div className="form-success-content">
                       <strong className="form-success-title">Message sent</strong>
                       <p className="form-success-text">Thanks for reaching out. I&apos;ll get back to you at your email soon.</p>
+                      <button type="button" className="form-success-again" onClick={() => setFormSubmitted(false)}>
+                        Send another message
+                      </button>
                     </div>
                   </div>
                 ) : (
                   <>
                     {formError && (
-                      <p className="form-error">{formErrorMsg || 'Could not send. Try again or email me directly below.'}</p>
+                      <p className="form-error" role="alert">{formErrorMsg || 'Could not send. Try again or email me directly below.'}</p>
                     )}
-                    <button type="submit" className="form-submit btn-primary" disabled={formSubmitting}>
+                    <button type="submit" className="form-submit btn-primary" disabled={formSubmitting} aria-busy={formSubmitting}>
                       {formSubmitting ? 'Sending…' : 'Send message'}
                     </button>
                   </>
@@ -219,7 +234,7 @@ export default function ContactSection({ className = '' }) {
             <h3 className="contact-panel-title">Reach out directly</h3>
             <div className="contact-direct">
               <div className="contact-cards">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sunainayaseen561@gmail.com" target="_blank" rel="noopener noreferrer" className="contact-card card-shine">
+                <a href="mailto:sunainayaseen561@gmail.com" className="contact-card card-shine">
                   <span className="contact-icon">
                     <ContactIcons.Email />
                   </span>

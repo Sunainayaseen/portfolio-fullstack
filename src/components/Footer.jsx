@@ -41,7 +41,7 @@ export default function Footer() {
             <h4 className="footer-col-title">Let&apos;s Connect</h4>
             <ul className="footer-connect-list">
               <li>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sunainayaseen561@gmail.com" target="_blank" rel="noopener noreferrer">
+                <a href="mailto:sunainayaseen561@gmail.com">
                   <span className="footer-connect-icon"><ContactIcons.Email /></span>
                   Email
                 </a>
