@@ -29,8 +29,10 @@ async function sendViaApi(payload) {
     const data = await res.json().catch(() => ({}))
     if (res.ok && data.status === 'success') return { ok: true }
     if (res.status === 400 && data.errors) return { ok: false, fieldErrors: data.errors }
+    console.warn('[contact] /api/contact did not deliver:', res.status, data)
     return { ok: false }
-  } catch {
+  } catch (err) {
+    console.warn('[contact] /api/contact unreachable:', err.message)
     return { ok: false }
   }
 }
@@ -55,9 +57,11 @@ async function sendViaFormSubmit({ name, email, subject, message }) {
     })
     const data = await res.json().catch(() => ({}))
     if (res.ok && String(data.success) === 'true') return { ok: true }
-    // FormSubmit's own text is long and owner-facing (e.g. the one-time activation notice); keep the UI message short
-    return { ok: false }
-  } catch {
+    console.warn('[contact] FormSubmit did not deliver:', res.status, data)
+    // Only the site owner ever sees this, before clicking the one-time activation link
+    return { ok: false, needsActivation: /activat/i.test(data.message || '') }
+  } catch (err) {
+    console.warn('[contact] FormSubmit unreachable:', err.message)
     return { ok: false }
   }
 }
@@ -158,7 +162,11 @@ export default function ContactSection({ className = '', isPage = false }) {
       if (backup.ok) return markSent()
 
       setFormError(true)
-      setFormErrorMsg("Your message couldn't be sent. Please try again in a moment.")
+      setFormErrorMsg(
+        backup.needsActivation
+          ? 'Form not activated yet: open sunainayaseen561@gmail.com, find the FormSubmit email and click "Activate Form".'
+          : "Your message couldn't be sent. Please try again in a moment.",
+      )
     } finally {
       setFormSubmitting(false)
     }
