@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ContactIcons } from '../data'
 
-const API_BASE = import.meta.env.DEV ? '' : (import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000')
+// Same-origin by default: Vercel serves /api/contact, and Vite proxies /api to Flask in dev.
+const API_BASE = import.meta.env.VITE_API_URL || ''
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
 
 function validateContactForm(data) {
@@ -73,13 +74,13 @@ export default function ContactSection({ className = '' }) {
         setFormError(true)
         setFormErrorMsg((data.errors && data.errors._global) || data.msg || `Server error ${res.status}`)
       }
-    } catch (err) {
+    } catch {
       setFormError(true)
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      const msg = isMobile
-        ? 'Network error. Same WiFi par computer ka URL use karein (e.g. http://192.168.x.x:5173), ya backend ko live deploy karke .env me VITE_API_URL set karein.'
-        : (err.message || 'Backend not reachable. Start Flask: cd portfolio-backend && python app.py')
-      setFormErrorMsg(msg)
+      setFormErrorMsg(
+        import.meta.env.DEV
+          ? 'Backend not reachable. Start Flask: cd portfolio-backend && python app.py'
+          : 'Network error. Please check your connection, or email me directly at sunainayaseen561@gmail.com.',
+      )
     } finally {
       setFormSubmitting(false)
     }

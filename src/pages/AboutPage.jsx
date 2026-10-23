@@ -2,8 +2,9 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
-  ABOUT_BEYOND, ABOUT_EDUCATION, ABOUT_GOALS, ABOUT_INFO, ABOUT_JOURNEY, ABOUT_STRENGTHS, CERTIFICATIONS, CertIcon, EXPERIENCE,
+  ABOUT_BEYOND, ABOUT_EDUCATION, ABOUT_GOALS, ABOUT_INFO, ABOUT_JOURNEY, ABOUT_STRENGTHS, CERTIFICATIONS, CertIcon,
 } from '../data'
+import ExperienceTimeline from '../components/ExperienceTimeline'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -135,21 +136,7 @@ export default function AboutPage() {
         <div className="container">
           <h2 className="section-title">Professional Experience</h2>
           <p className="section-subtitle">Where I&apos;ve applied quality engineering</p>
-          <div className="experience-card card-shine">
-            {EXPERIENCE.map((job, i) => (
-              <div key={job.company} className="exp-entry" style={i > 0 ? { marginTop: '1.75rem' } : undefined}>
-                <h3 className="exp-role">
-                  {job.role} · {job.href ? (
-                    <a href={job.href} target="_blank" rel="noopener noreferrer" className="exp-link">{job.company}</a>
-                  ) : job.company}
-                </h3>
-                <p className="exp-meta">{job.focus} · {job.location} · {job.period}</p>
-                <ul className="exp-list">
-                  {job.points.map((point) => <li key={point}>{point}</li>)}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <ExperienceTimeline />
         </div>
       </motion.section>
 

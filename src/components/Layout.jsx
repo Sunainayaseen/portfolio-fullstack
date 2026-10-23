@@ -31,14 +31,30 @@ export default function Layout() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [location.pathname])
 
+  // Cursor spotlight: feed pointer position to the hovered card as CSS vars
+  useEffect(() => {
+    const handleMove = (e) => {
+      const card = e.target.closest?.('.card-shine')
+      if (!card) return
+      const rect = card.getBoundingClientRect()
+      card.style.setProperty('--mx', `${e.clientX - rect.left}px`)
+      card.style.setProperty('--my', `${e.clientY - rect.top}px`)
+    }
+    window.addEventListener('pointermove', handleMove, { passive: true })
+    return () => window.removeEventListener('pointermove', handleMove)
+  }, [])
+
   return (
     <div className={`app loaded ${darkMode ? 'dark' : 'light'}`}>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <ScrollToTop />
       <div className="scroll-progress" id="scroll-progress" />
       <Navbar />
       <AnimatePresence mode="wait">
         <motion.main
           key={location.pathname}
+          id="main-content"
+          tabIndex={-1}
           variants={pageVariants}
           initial="initial"
           animate="animate"

@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunaina Yaseen | SQA Engineer</title>
+<meta name="description" content="Sunaina Yaseen, SQA Engineer. Manual testing for Android apps and web applications: test cases, bug reports, regression and more.">
+<meta name="theme-color" content="#4f46e5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  /* Apply saved or system theme before paint to avoid a flash */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (!t) t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+  :root {
+    /* Palette: deep navy ink + indigo accent */
+    --bg: #ffffff;
+    --bg-alt: #f6f7fb;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #e3e7f0;
+    --accent: #4f46e5;          /* indigo, 6.3:1 on white */
+    --accent-hover: #4338ca;
+    --accent-2: #7c3aed;        /* violet, used only in gradients */
+    --accent-soft: #eef0ff;
+    --on-accent: #ffffff;
+    --gradient: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+    --hero-glow: radial-gradient(60% 60% at 85% 10%, rgba(124,58,237,.14) 0%, transparent 70%),
+                 radial-gradient(50% 50% at 5% 90%, rgba(79,70,229,.12) 0%, transparent 70%);
+    --danger: #b42318;
+    --high: #b42318;  --high-bg: #fde8e7;
+    --med:  #9a5b00;  --med-bg:  #fdf1dc;
+    --low:  #2f6b2f;  --low-bg:  #e6f3e6;
+    --shadow: 0 1px 2px rgba(16,24,40,.06), 0 4px 16px rgba(16,24,40,.06);
+    --radius: 14px;
+    --max: 1080px;
+    --nav-h: 64px;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1020;
+    --bg-alt: #0f1529;
+    --surface: #141b33;
+    --text: #e7eaf6;
+    --muted: #a4acc8;
+    --border: #252e4d;
+    --accent: #8b93ff;
+    --accent-hover: #aab0ff;
+    --accent-2: #b794ff;
+    --accent-soft: #1d2350;
+    --on-accent: #0b1020;
+    --hero-glow: radial-gradient(60% 60% at 85% 10%, rgba(139,147,255,.18) 0%, transparent 70%),
+                 radial-gradient(50% 50% at 5% 90%, rgba(183,148,255,.12) 0%, transparent 70%);
+    --danger: #ff8a80;
+    --high: #ffb4ab;  --high-bg: #3d1a17;
+    --med:  #ffd28a;  --med-bg:  #3a2a0e;
+    --low:  #a6dba6;  --low-bg:  #183018;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px; line-height: 1.6;
+    background: var(--bg); color: var(--text);
+    overflow-x: hidden;
+  }
+  img, svg { max-width: 100%; }
+  a { color: var(--accent); }
+  a:hover { color: var(--accent-hover); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  h1, h2, h3 { line-height: 1.2; margin: 0 0 .5em; }
+  p { margin: 0 0 1em; }
+
+  .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 768px) { .container { padding: 0 24px; } }
+
+  .skip-link {
+    position: absolute; left: 12px; top: -60px; z-index: 100;
+    background: var(--accent); color: var(--on-accent); padding: 10px 16px; border-radius: 8px; font-weight: 600;
+  }
+  .skip-link:focus { top: 12px; }
+
+  /* ---------- Navigation ---------- */
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(160%) blur(10px);
+    -webkit-backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 12px; }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--text); text-decoration: none; }
+  .brand span { color: var(--accent); }
+  .nav-actions { display: flex; align-items: center; gap: 8px; }
+  .icon-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer;
+  }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .icon-btn svg { width: 20px; height: 20px; }
+  .theme-toggle .moon { display: none; }
+  :root[data-theme="dark"] .theme-toggle .sun { display: none; }
+  :root[data-theme="dark"] .theme-toggle .moon { display: block; }
+
+  .nav-links { list-style: none; margin: 0; padding: 0; }
+  .nav-links a {
+    display: block; padding: 10px 12px; border-radius: 8px;
+    color: var(--muted); text-decoration: none; font-weight: 500; font-size: .95rem;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); background: var(--accent-soft); }
+
+  @media (max-width: 899px) {
+    .nav-links {
+      position: absolute; top: var(--nav-h); left: 0; right: 0;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+      padding: 8px 16px 16px; display: none; box-shadow: var(--shadow);
+    }
+    .nav-links.open { display: block; }
+    .nav-links a { padding: 14px 12px; font-size: 1rem; }
+  }
+  @media (min-width: 900px) {
+    .menu-btn { display: none; }
+    .nav-links { display: flex; gap: 2px; }
+  }
+
+  /* ---------- Sections ---------- */
+  section { padding: 64px 0; scroll-margin-top: var(--nav-h); }
+  @media (min-width: 768px) { section { padding: 88px 0; } }
+  section.alt { background: var(--bg-alt); }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
+  .section-title { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; }
+  .section-lead { color: var(--muted); max-width: 640px; margin-bottom: 32px; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 12px 22px; border-radius: 10px;
+    font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+    border: 2px solid transparent; transition: background .15s, color .15s, border-color .15s;
+  }
+  .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .btn-primary { background: var(--gradient); color: var(--on-accent); box-shadow: 0 6px 18px -6px rgba(79,70,229,.55); }
+  .btn-primary:hover { color: var(--on-accent); filter: brightness(1.08); transform: translateY(-1px); }
+  .btn { transition: background .15s, color .15s, border-color .15s, transform .15s, filter .15s; }
+  .btn-outline { border-color: var(--accent); color: var(--accent); background: transparent; }
+  .btn-outline:hover { background: var(--accent-soft); color: var(--accent); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 479px) { .btn-row .btn { flex: 1 1 100%; } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 72px 0 64px; position: relative; overflow: hidden;
+    background: var(--hero-glow), radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0) 0 0 / 22px 22px;
+  }
+  @media (min-width: 768px) { .hero { padding: 112px 0 96px; } }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent-soft); color: var(--accent);
+    padding: 6px 12px; border-radius: 999px; font-size: .85rem; font-weight: 600; margin-bottom: 20px;
+  }
+  .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .hero h1 { font-size: clamp(2.2rem, 7vw, 3.6rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: 12px; }
+  .hero .role { font-size: clamp(1.05rem, 2.6vw, 1.3rem); font-weight: 600; color: var(--accent); margin-bottom: 16px; }
+  .hero .intro { font-size: 1.1rem; color: var(--muted); max-width: 600px; margin-bottom: 28px; }
+  .hero .loc { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: .95rem; margin-bottom: 28px; }
+  .hero .loc svg { width: 18px; height: 18px; }
+
+  /* ---------- Cards / grids ---------- */
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px; box-shadow: var(--shadow);
+  }
+  .grid { display: grid; gap: 16px; }
+  @media (min-width: 640px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 640px) and (max-width: 899px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+
+  .about-grid { display: grid; gap: 24px; }
+  @media (min-width: 900px) { .about-grid { grid-template-columns: 1.2fr 1fr; align-items: start; } }
+  .about-text p { color: var(--muted); font-size: 1.05rem; }
+  .tools-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .tools-list li { display: flex; align-items: center; gap: 12px; font-weight: 500; }
+  .tools-list .ico {
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 9px;
+    display: grid; place-items: center; background: var(--accent-soft); color: var(--accent);
+  }
+  .tools-list .ico svg { width: 18px; height: 18px; }
+  .card h3 { font-size: 1.05rem; }
+
+  .skill-card { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px; }
+  .skill-card .ico {
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px;
+    display: grid; place-items: center; background: var(--accent-soft); color: var(--accent);
+  }
+  .skill-card .ico svg { width: 20px; height: 20px; }
+  .skill-card h3 { margin-bottom: 4px; font-size: 1rem; }
+  .skill-card p { margin: 0; color: var(--muted); font-size: .93rem; }
+
+  .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips li {
+    padding: 8px 14px; border-radius: 999px; font-size: .92rem; font-weight: 500;
+    background: var(--surface); border: 1px solid var(--border);
+  }
+
+  /* ---------- Experience ---------- */
+  .timeline { list-style: none; margin: 0; padding: 0 0 0 28px; position: relative; max-width: 820px; }
+  .timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+  .timeline-item { position: relative; }
+  .timeline-dot {
+    position: absolute; left: -28px; top: 26px; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+  .exp { display: flex; flex-direction: column; gap: 16px; }
+  .exp-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; }
+  .exp h3 { font-size: 1.2rem; margin: 0 0 2px; }
+  .exp-company { margin: 0; color: var(--accent); font-weight: 600; }
+  .exp-date { margin: 0; color: var(--muted); font-size: .92rem; font-weight: 500; }
+  .exp h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 6px; }
+  .exp ul { margin: 0; padding-left: 18px; font-size: .95rem; }
+  .exp ul li { margin-bottom: 4px; }
+  .exp p { font-size: .95rem; }
+  .exp .result p { margin: 0; }
+
+  /* ---------- Polish ---------- */
+  .timeline-dot { background: var(--gradient); }
+  .section-title { letter-spacing: -.01em; }
+  .hero h1 .grad { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .project, .skill-card, .step { transition: transform .2s, border-color .2s, box-shadow .2s; }
+  .project:hover, .skill-card:hover, .step:hover {
+    transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    box-shadow: 0 12px 28px -12px rgba(79,70,229,.28);
+  }
+  .project { border-top: 3px solid var(--accent); }
+
+  /* ---------- Projects ---------- */
+  .project { display: flex; flex-direction: column; gap: 16px; }
+  .project-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .project h3 { font-size: 1.2rem; margin: 0; }
+  .tag {
+    font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent);
+  }
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat { background: var(--bg-alt); border-radius: 10px; padding: 12px; }
+  .stat strong { display: block; font-size: 1.5rem; font-weight: 800; color: var(--accent); line-height: 1.1; }
+  .stat span { font-size: .85rem; color: var(--muted); }
+  .project h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 6px; }
+  .project p, .project ul { margin: 0; font-size: .95rem; }
+  .project ul { padding-left: 18px; }
+  .project ul li { margin-bottom: 4px; }
+  .sev-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sev { font-size: .82rem; font-weight: 600; padding: 4px 10px; border-radius: 6px; }
+  .sev.high { color: var(--high); background: var(--high-bg); }
+  .sev.med  { color: var(--med);  background: var(--med-bg); }
+  .sev.low  { color: var(--low);  background: var(--low-bg); }
+  .result { border-left: 3px solid var(--accent); padding-left: 12px; }
+
+  /* ---------- Process ---------- */
+  .steps { list-style: none; margin: 0 0 32px; padding: 0; display: grid; gap: 16px; counter-reset: step; }
+  @media (min-width: 640px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .step { position: relative; }
+  .step .num {
+    position: absolute; top: 18px; right: 20px;
+    font-size: 2rem; font-weight: 800; color: var(--border); line-height: 1;
+  }
+  .step .ico {
+    width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--gradient); color: var(--on-accent); box-shadow: 0 8px 20px -8px rgba(79,70,229,.6); margin-bottom: 14px;
+  }
+  .step .ico svg { width: 24px; height: 24px; }
+  .step p { color: var(--muted); margin: 0; font-size: .95rem; }
+  .web-note h3 { display: flex; align-items: center; gap: 10px; }
+  .web-note h3 svg { width: 22px; height: 22px; color: var(--accent); }
+  .web-note ul { margin: 0; padding-left: 20px; color: var(--muted); }
+  .web-note li { margin-bottom: 6px; }
+
+  /* ---------- Bug tables ---------- */
+  .bug-card { padding: 0; overflow: hidden; }
+  .bug-card .bug-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--bg-alt);
+  }
+  .bug-card .bug-head h3 { margin: 0; font-size: 1.05rem; }
+  table.bug { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  table.bug caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  table.bug th, table.bug td { text-align: left; vertical-align: top; padding: 12px 20px; border-bottom: 1px solid var(--border); }
+  table.bug tr:last-child th, table.bug tr:last-child td { border-bottom: 0; }
+  table.bug th { width: 38%; color: var(--muted); font-weight: 600; font-size: .88rem; }
+  table.bug td { overflow-wrap: anywhere; }
+  @media (max-width: 420px) {
+    table.bug th, table.bug td { display: block; width: 100%; }
+    table.bug th { padding-bottom: 2px; border-bottom: 0; }
+    table.bug td { padding-top: 0; }
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-grid { display: grid; gap: 24px; }
+  @media (min-width: 900px) { .contact-grid { grid-template-columns: 1.4fr 1fr; align-items: start; } }
+  .field { margin-bottom: 18px; }
+  .field label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .field input, .field textarea {
+    width: 100%; font: inherit; color: var(--text); background: var(--bg);
+    border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 14px; min-height: 48px;
+  }
+  .field textarea { min-height: 140px; resize: vertical; }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .field [aria-invalid="true"] { border-color: var(--danger); }
+  .error { display: none; color: var(--danger); font-size: .9rem; font-weight: 500; margin-top: 6px; }
+  .error.show { display: block; }
+  .form-note { color: var(--muted); font-size: .88rem; margin: 12px 0 0; }
+  .direct { display: flex; flex-direction: column; gap: 14px; }
+  .direct p { color: var(--muted); margin: 0; }
+  .direct .btn { width: 100%; }
+  .links-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .links-list a { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-weight: 500; overflow-wrap: anywhere; min-height: 44px; }
+  .links-list svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+  /* ---------- Footer ---------- */
+  footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted); font-size: .9rem; }
+  footer .container { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
+  footer a { min-height: 44px; display: inline-flex; align-items: center; }
+
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ================= NAVIGATION ================= -->
+<header class="site-header">
+  <nav class="container nav" aria-label="Main">
+    <a class="brand" href="#home">Sunaina<span>.</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#testing-types">Testing types</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#bugs">Bug reports</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ================= 1. HERO ================= -->
+<section class="hero" id="home" aria-labelledby="hero-title">
+  <div class="container">
+    <div class="hero-badge"><span class="dot" aria-hidden="true"></span> Manual QA: Mobile and Web</div>
+    <h1 id="hero-title">Sunaina <span class="grad">Yaseen</span></h1>
+    <p class="role">SQA Engineer (Manual Testing: Mobile Apps and Web Applications)</p>
+    <p class="intro">SQA Engineer with a 3-month internship at 9D Technologies. I test Android apps and websites manually, write clear test cases and bug reports, and help developers fix issues faster.</p>
+    <!-- PLACEHOLDER: replace [City, Country] -->
+    <p class="loc">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      [City, Country]
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#projects">View projects</a>
+      <a class="btn btn-outline" href="#contact">Contact me</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. ABOUT ================= -->
+<section class="alt" id="about" aria-labelledby="about-title">
+  <div class="container">
+    <p class="eyebrow">About</p>
+    <h2 class="section-title" id="about-title">About me</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am an SQA Engineer focused on manual testing of Android apps and web applications. I design test cases that cover positive, negative and edge scenarios, and I write bug reports that are easy for developers to reproduce and fix.</p>
+        <p><strong>Experience:</strong> 3 months SQA internship at 9D Technologies.</p>
+        <p>I test each feature step by step, report what I find with clear expected results, and retest fixes before the final report.</p>
+      </div>
+      <div class="card">
+        <h3>Devices and tools I use</h3>
+        <ul class="tools-list">
+          <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span>Samsung Android phone</li>
+          <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg></span>Chrome DevTools</li>
+          <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span>Excel / Google Sheets (test cases and bug sheets)</li>
+          <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s0 2 2 2c0-3-1-5 1-8z"/><path d="M6 15a6 6 0 0 0 12 0"/></svg></span>Firebase Console</li>
+          <!-- PLACEHOLDER: replace with the tools you really use (Jira, Postman, ...), or delete this item -->
+          <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span>[Jira / Postman / other tools]</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. SKILLS ================= -->
+<section id="skills" aria-labelledby="skills-title">
+  <div class="container">
+    <p class="eyebrow">Skills</p>
+    <h2 class="section-title" id="skills-title">What I do</h2>
+    <p class="section-lead">Hands-on manual testing skills for mobile apps and websites.</p>
+    <div class="grid grid-3">
+      <article class="card skill-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span>
+        <div><h3>Manual testing and test case design</h3><p>Positive, negative and edge cases.</p></div>
+      </article>
+      <article class="card skill-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M12 6V3M4 10h4M16 10h4M4 16h4M16 16h4M9 3l1.5 3M15 3l-1.5 3"/></svg></span>
+        <div><h3>Bug reporting</h3><p>ID, screen, type, description, expected result, severity and priority.</p></div>
+      </article>
+      <article class="card skill-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span>
+        <div><h3>Smoke, sanity, regression, retest</h3><p>Check builds quickly and confirm fixes do not break other features.</p></div>
+      </article>
+      <article class="card skill-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/><path d="M1.5 9a15 15 0 0 1 21 0"/></svg></span>
+        <div><h3>Usability, compatibility, interrupt, network, localization</h3><p>Real-device behaviour beyond the happy path.</p></div>
+      </article>
+      <article class="card skill-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s0 2 2 2c0-3-1-5 1-8z"/><path d="M6 15a6 6 0 0 0 12 0"/></svg></span>
+        <div><h3>Firebase Remote Config testing</h3><p>Ads, paywall and JSON values.</p></div>
+      </article>
+      <article class="card skill-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+        <div><h3>Web testing</h3><p>Functional, UI, responsive and cross-browser (Chrome, Firefox, Edge, Safari).</p></div>
+      </article>
+      <article class="card skill-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg></span>
+        <div><h3>Forms and key user flows</h3><p>Login, search and checkout flow testing.</p></div>
+      </article>
+      <article class="card skill-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></span>
+        <div><h3>Link and navigation testing</h3><p>Broken links and 404 pages.</p></div>
+      </article>
+      <article class="card skill-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg></span>
+        <div><h3>Browser DevTools basics</h3><p>Console errors, Network tab and responsive mode.</p></div>
+      </article>
+
+      <!-- OPTIONAL PLACEHOLDER: keep only if you know it. Remove the comment markers to show it.
+      <article class="card skill-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><path d="M17 15l3 2-3 2"/></svg></span>
+        <div><h3>Basic API testing</h3><p>Sending requests and checking responses with Postman.</p></div>
+      </article>
+      -->
+      <!-- OPTIONAL PLACEHOLDER: keep only if you know it. Remove the comment markers to show it.
+      <article class="card skill-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg></span>
+        <div><h3>Basic web security checks</h3><p>Simple checks for common security issues.</p></div>
+      </article>
+      -->
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. TESTING TYPES ================= -->
+<section class="alt" id="testing-types" aria-labelledby="types-title">
+  <div class="container">
+    <p class="eyebrow">Coverage</p>
+    <h2 class="section-title" id="types-title">Testing types I work with</h2>
+    <p class="section-lead">The types of testing I use when I check an app or a website.</p>
+    <ul class="chips">
+      <li>Functional</li><li>UI</li><li>Positive</li><li>Negative</li><li>Edge</li>
+      <li>Smoke</li><li>Sanity</li><li>Regression</li><li>Retest</li><li>Usability</li>
+      <li>Compatibility</li><li>Cross-browser</li><li>Responsive</li><li>Installation</li><li>Interrupt</li>
+      <li>Performance</li><li>Network</li><li>Security</li><li>Localization</li><li>Accessibility</li>
+      <li>Exploratory</li><li>Gorilla</li><li>Monkey</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 5. EXPERIENCE ================= -->
+<section id="experience" aria-labelledby="experience-title">
+  <div class="container">
+    <p class="eyebrow">Experience</p>
+    <h2 class="section-title" id="experience-title">Work experience</h2>
+    <ol class="timeline">
+      <li class="timeline-item">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <article class="card exp">
+          <div class="exp-head">
+            <div>
+              <h3>SQA Engineer</h3>
+              <p class="exp-company">9D Technologies</p>
+            </div>
+            <!-- PLACEHOLDER: replace [start month year] and [end month year], e.g. Jul 2026 to Sep 2026 (use "Present" if still ongoing) -->
+            <p class="exp-date">3 months · [start month year] to [end month year]</p>
+          </div>
+          <div>
+            <h4>What I did</h4>
+            <ul>
+              <li>Manual testing of Android apps and web applications.</li>
+              <li>Wrote test cases (positive, negative, edge).</li>
+              <li>Reported bugs with severity and priority.</li>
+              <li>Retested fixed bugs.</li>
+              <li>Firebase Remote Config testing.</li>
+              <li>Prepared test case and bug sheets in Excel.</li>
+            </ul>
+          </div>
+          <!-- PLACEHOLDER: replace with your real result, e.g. "Delivered 351 test cases and 41 bug reports for the PDF Reader app" -->
+          <div class="result">
+            <h4>Result</h4>
+            <p>[short result]</p>
+          </div>
+        </article>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 6. PROJECTS ================= -->
+<section class="alt" id="projects" aria-labelledby="projects-title">
+  <div class="container">
+    <p class="eyebrow">Projects</p>
+    <h2 class="section-title" id="projects-title">Testing projects</h2>
+    <p class="section-lead">What I tested, what I did and the result.</p>
+    <div class="grid grid-3">
+
+      <article class="card project">
+        <div class="project-head"><h3>PDF Reader app</h3><span class="tag">Android</span></div>
+        <div class="stats">
+          <div class="stat"><strong>351</strong><span>test cases</span></div>
+          <div class="stat"><strong>41</strong><span>bugs + 4 suggestions</span></div>
+        </div>
+        <div class="sev-row" aria-label="Bugs by severity">
+          <span class="sev high">5 High</span><span class="sev med">23 Medium</span><span class="sev low">13 Low</span>
+        </div>
+        <div>
+          <h4>What I did</h4>
+          <p>Wrote and executed test cases for the modules: Home, Scan, Annotate, Fill &amp; Sign, Edit PDF, Image to PDF, Search and Reader. Reported bugs with severity and priority.</p>
+        </div>
+        <div class="result">
+          <h4>Result</h4>
+          <p>Delivered an Excel test case and bug sheet with 41 bugs and 4 suggestions.</p>
+        </div>
+      </article>
+
+      <article class="card project">
+        <div class="project-head"><h3>Document Scanner app</h3><span class="tag">Android</span></div>
+        <div class="stats">
+          <div class="stat"><strong>380</strong><span>test cases</span></div>
+          <div class="stat"><strong>3</strong><span>case types: positive, negative, edge</span></div>
+        </div>
+        <div>
+          <h4>What I did</h4>
+          <p>Wrote and executed positive, negative and edge test cases. Tested Firebase Remote Config, ads, paywall and OCR.</p>
+        </div>
+        <div class="result">
+          <h4>Result</h4>
+          <p>380 test cases covering the core scanner flows, monetization (ads and paywall) and OCR.</p>
+        </div>
+      </article>
+
+      <!-- PLACEHOLDER: QR Scanner app. Fill in the [ ] values with your real numbers and work. -->
+      <article class="card project">
+        <div class="project-head"><h3>QR Scanner app</h3><span class="tag">Android</span></div>
+        <div class="stats">
+          <div class="stat"><strong>[number]</strong><span>test cases</span></div>
+          <div class="stat"><strong>[number]</strong><span>bugs</span></div>
+        </div>
+        <div>
+          <h4>What I did</h4>
+          <p>[What you tested, e.g. modules and testing types]</p>
+        </div>
+        <div class="result">
+          <h4>Result</h4>
+          <p>[short result]</p>
+        </div>
+      </article>
+
+      <!-- PLACEHOLDER: web project. Fill in the [ ] values, or delete this whole <article> if you have no web project yet. -->
+      <article class="card project">
+        <div class="project-head"><h3>[Website name or type]</h3><span class="tag">Web</span></div>
+        <div class="stats">
+          <div class="stat"><strong>[number]</strong><span>test cases</span></div>
+          <div class="stat"><strong>[number]</strong><span>bugs</span></div>
+        </div>
+        <div>
+          <h4>What I did</h4>
+          <p>Tested forms, navigation and responsive design. Ran cross-browser checks and noted Console and Network errors.</p>
+        </div>
+        <div class="result">
+          <h4>Result</h4>
+          <p>[number] test cases executed and [number] bugs reported.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. PROCESS ================= -->
+<section id="process" aria-labelledby="process-title">
+  <div class="container">
+    <p class="eyebrow">Process</p>
+    <h2 class="section-title" id="process-title">My testing process</h2>
+    <p class="section-lead">The same clear steps on every project.</p>
+    <ol class="steps">
+      <li class="card step"><span class="num" aria-hidden="true">01</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <h3>Understand the app</h3><p>Learn the features, flows and requirements.</p></li>
+      <li class="card step"><span class="num" aria-hidden="true">02</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+        <h3>Write test cases</h3><p>Positive, negative and edge cases for each module.</p></li>
+      <li class="card step"><span class="num" aria-hidden="true">03</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <h3>Execute</h3><p>Run each test case and mark it pass or fail.</p></li>
+      <li class="card step"><span class="num" aria-hidden="true">04</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M12 6V3M4 10h4M16 10h4M4 16h4M16 16h4"/></svg></div>
+        <h3>Report bugs</h3><p>Clear steps, expected result, severity and priority.</p></li>
+      <li class="card step"><span class="num" aria-hidden="true">05</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div>
+        <h3>Retest</h3><p>Verify fixes and check nearby features again.</p></li>
+      <li class="card step"><span class="num" aria-hidden="true">06</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
+        <h3>Share the final report</h3><p>Test case and bug sheet with the final status.</p></li>
+    </ol>
+    <div class="card web-note">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>For web projects</h3>
+      <ul>
+        <li>Test on Chrome and at least one more browser.</li>
+        <li>Check both mobile and desktop views.</li>
+        <li>Note any Console errors with the bug report.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. SAMPLE BUG REPORTS ================= -->
+<section class="alt" id="bugs" aria-labelledby="bugs-title">
+  <div class="container">
+    <p class="eyebrow">Samples</p>
+    <h2 class="section-title" id="bugs-title">Sample bug reports</h2>
+    <p class="section-lead">How I write a bug so a developer can understand it fast.</p>
+    <div class="grid grid-2">
+
+      <div class="card bug-card">
+        <div class="bug-head"><h3>Mobile app</h3><span class="tag">Android</span></div>
+        <table class="bug">
+          <caption>Sample mobile bug report</caption>
+          <tbody>
+            <tr><th scope="row">Bug ID</th><td>BUG-38</td></tr>
+            <tr><th scope="row">Screen</th><td>Annotate &gt; Save</td></tr>
+            <tr><th scope="row">Type</th><td>Functional</td></tr>
+            <tr><th scope="row">Description</th><td>Text added with Annotate is not saved on any PDF.</td></tr>
+            <tr><th scope="row">Expected result</th><td>Added text is saved and shows after reopening.</td></tr>
+            <tr><th scope="row">Severity</th><td><span class="sev high">High</span></td></tr>
+            <tr><th scope="row">Priority</th><td>P2</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- PLACEHOLDER: confirm or replace this web sample with a real bug you reported -->
+      <div class="card bug-card">
+        <div class="bug-head"><h3>Web application</h3><span class="tag">Web</span></div>
+        <table class="bug">
+          <caption>Sample web bug report</caption>
+          <tbody>
+            <tr><th scope="row">Screen</th><td>Contact form</td></tr>
+            <tr><th scope="row">Type</th><td>Functional</td></tr>
+            <tr><th scope="row">Description</th><td>Submit button works with empty fields.</td></tr>
+            <tr><th scope="row">Expected result</th><td>A validation message is shown.</td></tr>
+            <tr><th scope="row">Severity</th><td><span class="sev med">Medium</span></td></tr>
+            <tr><th scope="row">Priority</th><td>P3</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9. CONTACT ================= -->
+<section id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <p class="eyebrow">Contact</p>
+    <h2 class="section-title" id="contact-title">Contact me</h2>
+    <p class="section-lead">Need an app or website tested? Send me a message on WhatsApp.</p>
+    <div class="contact-grid">
+
+      <form class="card" id="contact-form" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error">
+          <p class="error" id="name-error" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="email-error">
+          <p class="error" id="email-error" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required aria-describedby="message-error"></textarea>
+          <p class="error" id="message-error" role="alert"></p>
+        </div>
+        <button class="btn btn-primary" type="submit" style="width:100%">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+          Send on WhatsApp
+        </button>
+        <p class="form-note">This opens WhatsApp in a new tab with your message ready to send.</p>
+      </form>
+
+      <div class="card direct">
+        <h3>Reach me directly</h3>
+        <p>Prefer to chat now or send an email?</p>
+        <a class="btn btn-primary" id="wa-direct" href="#" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+          Chat on WhatsApp
+        </a>
+        <ul class="links-list">
+          <!-- Email, LinkedIn and GitHub were taken from your existing portfolio code; check they are still correct -->
+          <li><a href="mailto:sunainayaseen561@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+            sunainayaseen561@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/in/sunaina-yaseen-160695277" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H9z"/></svg>
+            LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+          <li><a href="https://github.com/Sunainayaseen" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>
+            GitHub<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <span>&copy; <span id="year"></span> Sunaina Yaseen. SQA Engineer.</span>
+    <a href="#home">Back to top</a>
+  </div>
+</footer>
+
+<script>
+  /* ===== PLACEHOLDER: your WhatsApp number, country code first, no + or spaces (e.g. 923001234567) ===== */
+  var WHATSAPP_NUMBER = '92XXXXXXXXXX';
+
+  (function () {
+    var root = document.documentElement;
+
+    /* Year */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* Theme toggle */
+    var themeBtn = document.getElementById('theme-toggle');
+    function syncThemeLabel() {
+      var dark = root.getAttribute('data-theme') === 'dark';
+      themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    syncThemeLabel();
+    themeBtn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      syncThemeLabel();
+    });
+
+    /* Mobile menu */
+    var menuBtn = document.getElementById('menu-btn');
+    var navLinks = document.getElementById('nav-links');
+    function setMenu(open) {
+      navLinks.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+    menuBtn.addEventListener('click', function () { setMenu(!navLinks.classList.contains('open')); });
+    navLinks.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) { setMenu(false); menuBtn.focus(); }
+    });
+
+    /* Highlight the current section in the nav */
+    if ('IntersectionObserver' in window) {
+      var links = navLinks.querySelectorAll('a');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          links.forEach(function (a) {
+            var on = a.getAttribute('href') === '#' + entry.target.id;
+            a.classList.toggle('active', on);
+            if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      document.querySelectorAll('main section[id]').forEach(function (s) { io.observe(s); });
+    }
+
+    /* WhatsApp links */
+    function waUrl(text) {
+      return 'https://wa.me/' + WHATSAPP_NUMBER + (text ? '?text=' + encodeURIComponent(text) : '');
+    }
+    document.getElementById('wa-direct').href = waUrl('Hi Sunaina, ');
+
+    /* Contact form */
+    var form = document.getElementById('contact-form');
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    function setError(input, msg) {
+      var err = document.getElementById(input.id + '-error');
+      err.textContent = msg;
+      err.classList.toggle('show', !!msg);
+      if (msg) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+    }
+
+    function validate(input) {
+      var v = input.value.trim();
+      if (input.id === 'name')    { setError(input, v ? '' : 'Please enter your name.'); }
+      if (input.id === 'email')   { setError(input, !v ? 'Please enter your email.' : (EMAIL_RE.test(v) ? '' : 'Please enter a valid email, like name@example.com.')); }
+      if (input.id === 'message') { setError(input, v ? '' : 'Please write a message.'); }
+      return !input.hasAttribute('aria-invalid');
+    }
+
+    var nameEl = document.getElementById('name');
+    var emailEl = document.getElementById('email');
+    var msgEl = document.getElementById('message');
+    var fields = [nameEl, emailEl, msgEl];
+    fields.forEach(function (f) {
+      f.addEventListener('blur', function () { if (f.value.trim() || f.hasAttribute('aria-invalid')) validate(f); });
+      f.addEventListener('input', function () { if (f.hasAttribute('aria-invalid')) validate(f); });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var firstBad = null;
+      fields.forEach(function (f) { if (!validate(f) && !firstBad) firstBad = f; });
+      if (firstBad) { firstBad.focus(); return; }
+
+      var text = 'Hi Sunaina, I am ' + nameEl.value.trim() +
+                 ' (' + emailEl.value.trim() + '). ' + msgEl.value.trim();
+      window.open(waUrl(text), '_blank', 'noopener');
+    });
+  })();
+</script>
+</body>
+</html>

@@ -17,7 +17,7 @@ body {
 }
 
 ::selection {
-  background: rgba(16, 185, 129, 0.3);
+  background: rgba(250, 204, 21, 0.3);
   color: inherit;
 }
 
@@ -31,18 +31,18 @@ code {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B1220;
+  background: #0A0A0A;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #10B981, #22D3EE);
+  background: linear-gradient(180deg, #FACC15, #EAB308);
   border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #10B981;
+  background: #FACC15;
 }
 
 [data-theme="light"] ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: #F5F5F4;
 }

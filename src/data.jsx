@@ -140,7 +140,7 @@ export const SkillIcons = {
 
 export const SKILLS_STATS = [
   { icon: 'code', value: '4', label: 'Automation Frameworks' },
-  { icon: 'cube', value: '6+', label: 'Testing Types' },
+  { icon: 'cube', value: '50+', label: 'Testing Types' },
   { icon: 'db', value: 'UI · API', label: '+ Performance Testing' },
   { icon: 'git', value: 'STLC', label: 'End-to-End Ownership' },
 ]
@@ -336,7 +336,7 @@ export const ABOUT_STRENGTHS = [
   'Sharp attention to detail',
 ]
 
-export const ABOUT_JOURNEY = "My journey started with Python and a habit of asking \"what happens if…?\". Building full-stack projects — including project-based web work at remotebirdy.com — showed me how easily bugs slip through when testing is an afterthought, and that pulled me toward quality assurance. Today, as an SQA Engineer at Softerio Solutions, I design test cases from requirements, automate regression with Selenium, Cypress and Playwright, validate APIs with Postman and load-test with JMeter — so every release is one the team can trust."
+export const ABOUT_JOURNEY = "My journey started with Python and a habit of asking \"what happens if…?\". Building full-stack projects — including project-based web work at remotebirdy.com — showed me how easily bugs slip through when testing is an afterthought, and that pulled me toward quality assurance. A 3-month SQA internship at 9D Technologies gave me my first hands-on experience testing inside a professional team. Today, as an SQA Engineer at Softerio Solutions, I design test cases from requirements, automate regression with Selenium, Cypress and Playwright, validate APIs with Postman and load-test with JMeter — so every release is one the team can trust."
 
 export const ABOUT_EDUCATION = [
   { degree: 'Bachelor of Computer Science', school: 'University of Education', period: '2022 – 2026' },
@@ -362,7 +362,9 @@ export const EXPERIENCE = [
     role: 'SQA Engineer',
     company: 'Softerio Solutions',
     location: 'Lahore, Pakistan',
-    period: 'Present',
+    period: '2025 – Present',
+    type: 'Full-time',
+    current: true,
     focus: 'Manual & Automation Testing',
     points: [
       'Writing test plans, scenarios and test cases from requirements and user stories',
@@ -371,6 +373,22 @@ export const EXPERIENCE = [
       'Testing REST APIs with Postman and running load tests with JMeter',
       'Logging, tracking and re-verifying defects in Jira alongside developers',
     ],
+    tools: ['Selenium', 'PyTest', 'Cypress', 'Playwright', 'Postman', 'JMeter', 'Jira'],
+  },
+  {
+    role: 'SQA Intern',
+    company: '9D Technologies',
+    location: 'Pakistan',
+    period: '3 Months',
+    type: 'Internship',
+    focus: 'Software Quality Assurance',
+    points: [
+      'Completed a 3-month QA internship working inside a live product team',
+      'Wrote and executed test cases for web application features and reported defects with clear repro steps',
+      'Performed functional, UI and regression testing before releases',
+      'Learned the full STLC and defect life cycle in a professional workflow',
+    ],
+    tools: ['Manual Testing', 'Test Cases', 'Bug Reporting', 'Regression'],
   },
   {
     role: 'Web Developer',
@@ -378,11 +396,13 @@ export const EXPERIENCE = [
     href: 'https://remotebirdy.com/',
     location: 'Remote',
     period: 'Project-based',
+    type: 'Freelance',
     focus: 'Full-Stack Development',
     points: [
       'Full-stack feature development, API integration and documentation',
       'A developer’s view of how bugs are introduced — which now shapes how I test',
     ],
+    tools: ['React', 'Flask', 'REST APIs'],
   },
 ]
 

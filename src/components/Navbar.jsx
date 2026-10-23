@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import Logo from './Logo'
 import { NAV_LINKS } from '../data'
@@ -8,6 +8,19 @@ export default function Navbar() {
   const [navOpen, setNavOpen] = useState(false)
   const { darkMode, toggleTheme } = useTheme()
   const navigate = useNavigate()
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onKey = (e) => { if (e.key === 'Escape') setNavOpen(false) }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('keydown', onKey)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [])
 
   const goContact = () => {
     navigate('/contact')
@@ -15,7 +28,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className={`navbar ${navOpen ? 'nav-open' : ''}`}>
+    <nav className={`navbar ${navOpen ? 'nav-open' : ''} ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="nav-container">
         <NavLink to="/" className="nav-logo" onClick={() => setNavOpen(false)} aria-label="Sunaina Yaseen - Home">
           <Logo />

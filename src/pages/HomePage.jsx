@@ -5,6 +5,8 @@ import {
   ABOUT_STATS, HERO_TAGLINES, PROCESS_STEPS, PROJECTS, TECH_STACK_ICONS, SkillIcons,
 } from '../data'
 import ContactSection from '../components/ContactSection'
+import ExperienceTimeline from '../components/ExperienceTimeline'
+import CountUp from '../components/CountUp'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -145,7 +147,7 @@ export default function HomePage() {
         <div className="hero-stats hero-reveal">
           {ABOUT_STATS.map((stat) => (
             <div key={stat.label} className="hero-stat">
-              <span className="hero-stat-value">{stat.value}</span>
+              <span className="hero-stat-value"><CountUp value={stat.value} /></span>
               <span className="hero-stat-label">{stat.label}</span>
             </div>
           ))}
@@ -222,6 +224,23 @@ export default function HomePage() {
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
               </span>
             </Link>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        className="section experience visible"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={fadeUp}
+      >
+        <div className="container">
+          <h2 className="section-title">Experience</h2>
+          <p className="section-subtitle">Where I&apos;ve applied quality engineering</p>
+          <ExperienceTimeline compact />
+          <div className="projects-footer">
+            <Link to="/about" className="btn btn-outline">Full Experience &amp; Background →</Link>
           </div>
         </div>
       </motion.section>
